@@ -1,22 +1,26 @@
 # My Smart Learning Cards 🎒✨
-**Grade 2 CBSE Interactive Flashcard Quiz App**
+**Grade 2 CBSE & Grade 5 Telangana SSC Interactive Flashcard Quiz App**
 
-A cheerful, accessible, child-friendly web application designed for an 8-year-old Grade 2 CBSE student to practice **Maths** and **ICT (Computers)** through interactive 10-question flashcard quizzes.
+A colorful, accessible, child-friendly web application designed for young learners in **Grade 2 (CBSE)** and **Grade 5 (Telangana SSC Board)** to practice core subjects through interactive 10-question flashcard quizzes with browser-native text-to-speech audio support.
+
+Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
 
 ---
 
-## 🌟 Features
+## 🌟 What's New in this Release
 
-- **Child-Friendly UI/UX**: Pastel color theme, large legible fonts, large touch targets, bouncy celebrations, and high-contrast readable buttons.
-- **200 Permanent Questions**: Exactly **100 Maths questions** and **100 ICT questions** strictly aligned with the Grade 2 CBSE syllabus.
-- **Smart Quiz Engine**:
-  - Selects **10 random, non-duplicate questions** per quiz using the Fisher-Yates shuffle algorithm.
-  - Shuffles the 4 answer choices dynamically for every card.
-  - Prevents repeated clicks or score tampering.
-  - Immediate audio-visual feedback (Green for correct, Red with correct answer reveal for mistakes).
-- **Web Audio Sound Effects**: Pure JavaScript synthesizer provides delightful chimes and fanfares with zero external audio files.
-- **Detailed Results & Review**: Final score out of 10, encouraging badges, and an accordion review of all 10 questions and explanations.
-- **Zero Dependencies**: Pure HTML5, CSS3, and Vanilla JavaScript. Works offline and deploys statically to GitHub Pages.
+1. **Grade Selection Screen**:
+   - **Grade 2 — CBSE Board**: Maths & ICT (Computers).
+   - **Grade 5 — Telangana SSC Board**: Maths & Science (EVS - aligned with Telangana SCERT).
+2. **Grade 5 Telangana SSC Question Banks**:
+   - **Maths**: 100 questions covering Lakhs place value, multi-digit operations, factors & multiples, fractions, decimals, geometry & angles, perimeter & area, and measurement conversions.
+   - **Science (EVS)**: 100 questions covering animal senses, Nallamala forests & Chenchus, seed dispersal, digestion & balanced diet, water harvesting & Mission Bhagiratha, historic Telangana forts (Golconda, Ramappa, Warangal), and environmental conservation.
+3. **🔊 Browser-Native Read-Aloud Feature**:
+   - **Read Question**: Speaks the question statement naturally with mathematical expressions formatted in plain English (e.g., "times", "divided by", "rupees").
+   - **Read Options**: Clearly announces options one by one ("Option A: ... Option B: ...").
+   - **Read Feedback**: Audio explanation and answer reveal after submitting an answer.
+   - **Stop Reading**: Immediate speech cancellation, preventing voice overlaps across cards or screen navigation.
+   - **Zero External Dependencies**: Powered entirely by the browser's native Web Speech API (`window.speechSynthesis`).
 
 ---
 
@@ -24,72 +28,71 @@ A cheerful, accessible, child-friendly web application designed for an 8-year-ol
 
 ```text
 Flash-Card-Project/
-├── index.html                  # Main application UI
+├── index.html                           # Main application UI (Grades, Subjects, Flashcards)
 ├── css/
-│   └── style.css               # Cheerful, responsive, accessible styles
+│   └── style.css                        # Cheerful, responsive, accessible styles & animations
 ├── js/
-│   ├── app.js                  # UI controllers and event listeners
-│   ├── quiz.js                 # Quiz engine, shuffle & score state
-│   └── utils.js                # Fisher-Yates shuffle & Web Audio sound synth
+│   ├── app.js                           # View routing, navigation & speech button handlers
+│   ├── quiz.js                          # QuizEngine: Grade/subject loading, shuffle & scoring
+│   └── utils.js                         # Fisher-Yates shuffle, Web Audio & SpeechHelper (TTS)
 ├── data/
-│   ├── maths-questions.js      # 100 Grade 2 CBSE Maths questions
-│   └── ict-questions.js        # 100 Grade 2 CBSE ICT questions
-├── validate.js                 # 18-point automated validation test suite
-└── README.md                   # Documentation and deployment guide
+│   ├── maths-questions.js               # Grade 2 CBSE Maths (100 questions)
+│   ├── ict-questions.js                 # Grade 2 CBSE ICT (100 questions)
+│   ├── grade5-ssc-maths-questions.js    # Grade 5 Telangana SSC Maths (100 questions)
+│   └── grade5-ssc-science-questions.js  # Grade 5 Telangana SSC Science (EVS) (100 questions)
+├── validate.js                          # 37-point automated verification test suite
+└── README.md                            # Documentation and deployment instructions
 ```
+
+---
+
+## 📊 Question Bank Summary (400 Total Questions)
+
+| Grade | Board | Subject | Question Bank File | Questions |
+| :--- | :--- | :--- | :--- | :--- |
+| **Grade 2** | CBSE | Maths | `data/maths-questions.js` | **100** |
+| **Grade 2** | CBSE | ICT | `data/ict-questions.js` | **100** |
+| **Grade 5** | Telangana SSC | Maths | `data/grade5-ssc-maths-questions.js` | **100** |
+| **Grade 5** | Telangana SSC | Science (EVS) | `data/grade5-ssc-science-questions.js` | **100** |
+| **Total** | | | | **400** |
 
 ---
 
 ## 🚀 How to Run Locally on Windows 11
 
-### Method 1: Double-click
-1. Open this folder in Windows File Explorer:
-   `C:\Users\Naresh\Documents\GitHub\Flash-Card-Project`
-2. Double-click **`index.html`** to launch the quiz app in your web browser.
-
-### Method 2: From PowerShell / Terminal
+### 1. Launch in Browser
+Double-click **`index.html`** in Windows File Explorer, or run in PowerShell:
 ```powershell
 Start-Process index.html
 ```
 
-### Running the Automated Tests
-In your terminal, run:
+### 2. Run the Automated 37-Point Test Suite
+In PowerShell / terminal:
 ```powershell
 node validate.js
 ```
-All 18 validation criteria will execute and report passing tests.
+Expected output:
+```text
+======================================================
+🎯 TEST RESULTS: 37 PASSED, 0 FAILED
+======================================================
+```
 
 ---
 
-## 🌐 GitHub Pages Deployment Guide
+## 🌐 Deploying to GitHub Pages
 
-Follow these beginner-friendly steps to deploy the app for free:
-
-### 1. Commit and Push Files to GitHub
-Open your terminal in this repository and run:
-```powershell
-git add .
-git commit -m "Build Grade 2 CBSE Smart Flashcard App"
-git push origin main
-```
-
-### 2. Configure GitHub Pages
-1. Go to your repository on **[github.com](https://github.com/)**.
-2. Click on the **Settings** tab (gear icon at the top).
-3. In the left-hand navigation menu, click on **Pages** (under the "Code and automation" section).
-4. Under **Build and deployment**:
-   - **Source**: Select `Deploy from a branch`.
-   - **Branch**: Select `main`.
-   - **Folder**: Select `/ (root)`.
-5. Click **Save**.
-
-### 3. Access Your Live Site
-- Within 1 to 2 minutes, GitHub Pages will deploy your site.
-- Refresh the **Pages** settings tab to view your live URL:
-  ```text
-  https://<your-github-username>.github.io/Flash-Card-Project/
-  ```
-
-### 4. Troubleshooting Common Deployment Issues
-- **Images or scripts not loading**: Ensure all paths in `index.html` are relative (e.g., `css/style.css`, `data/maths-questions.js`), which is already configured.
-- **404 Not Found**: Make sure the root folder was selected in the GitHub Pages settings and wait 60 seconds for GitHub Actions to complete the build.
+1. Review and commit your changes on the feature branch:
+   ```powershell
+   git status
+   git add .
+   git commit -m "feat: Add Grade 5 Telangana SSC Maths, Science (EVS) and Read-Aloud speech support"
+   ```
+2. Merge into `main` and push to GitHub:
+   ```powershell
+   git checkout main
+   git merge feature/grade5-ssc-read-aloud
+   git push origin main
+   ```
+3. Your live application will update automatically on GitHub Pages at:
+   **https://naresh-shekkari.github.io/Flash-Card-Project/**

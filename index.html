@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Smart Learning Cards - Grade 2 CBSE</title>
+  <title>My Smart Learning Cards - CBSE & Telangana SSC</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +13,14 @@
   <!-- Header -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="logo-area">
+      <div class="logo-area" id="headerLogoArea" role="button" tabindex="0" title="Return to Grade Selection" aria-label="Go to Home / Grade Selection">
         <span class="logo-icon" aria-hidden="true">🎒</span>
         <div>
           <h1 class="app-title">My Smart Learning Cards</h1>
           <p class="app-subtitle">Learn, Play and Shine! ✨</p>
         </div>
       </div>
-      <div class="header-sound-control">
+      <div class="header-controls">
         <button id="soundToggleBtn" class="sound-toggle-btn" aria-label="Toggle Sound Effects" title="Toggle Sound">
           🔊 Sound On
         </button>
@@ -30,11 +30,64 @@
 
   <!-- Main Container -->
   <main class="main-container">
-    <!-- Screen 1: Home View -->
-    <section id="homeView" class="view active-view" aria-label="Subject Selection">
+    <!-- Screen 1: Grade Selection View (Home) -->
+    <section id="gradeSelectView" class="view active-view" aria-label="Grade Selection">
       <div class="welcome-banner">
-        <h2>Hello Superstar! 👋</h2>
-        <p>Pick a subject below to start your fun 10-question flashcard quiz!</p>
+        <h2>Welcome Superstar! 👋</h2>
+        <p>Choose your grade and curriculum to begin learning:</p>
+      </div>
+
+      <div class="grade-grid">
+        <!-- Grade 2 CBSE Card -->
+        <div class="grade-card grade2-theme" id="cardGrade2" tabindex="0" role="button" aria-label="Select Grade 2 CBSE">
+          <div class="grade-badge">Primary Level</div>
+          <div class="grade-icon-wrap" aria-hidden="true">
+            <span class="grade-icon">🌱 ⭐</span>
+          </div>
+          <h3 class="grade-title">Grade 2</h3>
+          <div class="board-pill">CBSE Curriculum</div>
+          <p class="grade-desc">Foundation Maths, Number Concepts, Shapes, Time & Basic ICT Computer Skills.</p>
+          <div class="grade-stats">
+            <span class="stat-pill">📐 100 Maths</span>
+            <span class="stat-pill">💻 100 ICT</span>
+          </div>
+          <button class="btn btn-primary btn-large btn-grade2" id="btnSelectGrade2">
+            Explore Grade 2 ➔
+          </button>
+        </div>
+
+        <!-- Grade 5 Telangana SSC Card -->
+        <div class="grade-card grade5-theme" id="cardGrade5" tabindex="0" role="button" aria-label="Select Grade 5 Telangana SSC Board">
+          <div class="grade-badge">Upper Primary Level</div>
+          <div class="grade-icon-wrap" aria-hidden="true">
+            <span class="grade-icon">🚀 🏆</span>
+          </div>
+          <h3 class="grade-title">Grade 5</h3>
+          <div class="board-pill board-pill-ts">Telangana SSC Board</div>
+          <p class="grade-desc">Advanced Fractions, Geometry, Perimeter, Area & Environmental Studies (Science).</p>
+          <div class="grade-stats">
+            <span class="stat-pill">📐 100 Maths</span>
+            <span class="stat-pill">🔬 100 Science (EVS)</span>
+          </div>
+          <button class="btn btn-primary btn-large btn-grade5" id="btnSelectGrade5">
+            Explore Grade 5 ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 2: Grade 2 Subject Selection View -->
+    <section id="subjectGrade2View" class="view" aria-label="Grade 2 Subject Selection" style="display: none;">
+      <div class="nav-breadcrumbs">
+        <button id="btnBackToGradesFromG2" class="btn btn-secondary btn-small">
+          ← Back to Grades
+        </button>
+        <span class="breadcrumb-badge">Grade 2 • CBSE Board</span>
+      </div>
+
+      <div class="welcome-banner">
+        <h2>Grade 2 Subjects 📚</h2>
+        <p>Pick a subject below to start your 10-question flashcard quiz!</p>
       </div>
 
       <div class="subject-grid">
@@ -72,15 +125,65 @@
       </div>
     </section>
 
-    <!-- Screen 2: Quiz View -->
+    <!-- Screen 3: Grade 5 Subject Selection View -->
+    <section id="subjectGrade5View" class="view" aria-label="Grade 5 Subject Selection" style="display: none;">
+      <div class="nav-breadcrumbs">
+        <button id="btnBackToGradesFromG5" class="btn btn-secondary btn-small">
+          ← Back to Grades
+        </button>
+        <span class="breadcrumb-badge breadcrumb-ts">Grade 5 • Telangana SSC Board</span>
+      </div>
+
+      <div class="welcome-banner">
+        <h2>Grade 5 Subjects 🎯</h2>
+        <p>Aligned with the Telangana SCERT curriculum. Select a subject to practice:</p>
+      </div>
+
+      <div class="subject-grid">
+        <!-- Grade 5 Maths Card -->
+        <div class="subject-card g5maths-card" id="cardG5Maths">
+          <div class="subject-badge">Telangana SCERT</div>
+          <div class="subject-icon-wrap" aria-hidden="true">
+            <span class="subject-icon">📐 📊</span>
+          </div>
+          <h3 class="subject-name">Maths</h3>
+          <p class="subject-desc">Fractions, Factors, LCM, Perimeter, Area, Angles, Decimals & Word Problems!</p>
+          <div class="question-count-badge">
+            <span class="count-number">100</span> Questions in Bank
+          </div>
+          <button class="btn btn-primary btn-large btn-g5maths" id="btnStartG5Maths">
+            Start Maths Quiz 🚀
+          </button>
+        </div>
+
+        <!-- Grade 5 Science (EVS) Card -->
+        <div class="subject-card g5science-card" id="cardG5Science">
+          <div class="subject-badge">Telangana SCERT EVS</div>
+          <div class="subject-icon-wrap" aria-hidden="true">
+            <span class="subject-icon">🔬 🌿</span>
+          </div>
+          <h3 class="subject-name">Science (EVS)</h3>
+          <p class="subject-desc">Animal Senses, Forests & Chenchus, Seeds, Water, Heritage Forts & Human Body!</p>
+          <div class="question-count-badge">
+            <span class="count-number">100</span> Questions in Bank
+          </div>
+          <button class="btn btn-primary btn-large btn-g5science" id="btnStartG5Science">
+            Start Science (EVS) Quiz 🚀
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 4: Quiz View -->
     <section id="quizView" class="view" aria-label="Flashcard Quiz" style="display: none;">
       <!-- Quiz Header Status Bar -->
       <div class="quiz-status-bar">
-        <button id="btnQuitQuiz" class="btn btn-secondary btn-small" aria-label="Exit quiz and return to Home">
-          ← Home
+        <button id="btnQuitQuiz" class="btn btn-secondary btn-small" aria-label="Exit quiz and return to subject selection">
+          ← Exit Quiz
         </button>
-        <div class="subject-indicator" id="quizSubjectLabel">
-          Maths
+        <div class="quiz-info-pills">
+          <span class="grade-board-pill" id="quizGradeBoardLabel">Grade 2 • CBSE</span>
+          <span class="subject-indicator" id="quizSubjectLabel">Maths</span>
         </div>
         <div class="live-score-pill">
           Score: <span id="liveScoreText" class="score-highlight">0</span> / 10 ⭐
@@ -98,8 +201,23 @@
       <!-- Flashcard Interface -->
       <article class="flashcard" id="flashcardBox">
         <div class="card-top-row">
-          <span class="topic-tag" id="cardTopicTag">Topic</span>
-          <span class="question-id-tag" id="cardQuestionId">MATH001</span>
+          <div class="card-meta-left">
+            <span class="topic-tag" id="cardTopicTag">Topic</span>
+            <span class="question-id-tag" id="cardQuestionId">MATH001</span>
+          </div>
+          <!-- Read-Aloud Accessibility Toolbar -->
+          <div class="speech-toolbar" role="toolbar" aria-label="Audio read-aloud controls">
+            <button id="btnReadQuestion" class="speech-btn" type="button" title="Listen to Question" aria-label="Read Question Aloud">
+              🔊 Read Question
+            </button>
+            <button id="btnReadOptions" class="speech-btn" type="button" title="Listen to Options" aria-label="Read Options Aloud">
+              🔊 Read Options
+            </button>
+            <button id="btnStopReading" class="speech-btn btn-stop-speech" type="button" title="Stop Reading" aria-label="Stop Reading" style="display: none;">
+              ⏹️ Stop
+            </button>
+            <span id="speechStatusIndicator" class="speech-status-pill" style="display: none;" aria-live="polite">🗣️ Speaking...</span>
+          </div>
         </div>
 
         <div class="question-statement-box">
@@ -113,7 +231,12 @@
 
         <!-- Feedback Alert Box -->
         <div id="feedbackBox" class="feedback-box" style="display: none;" role="alert" aria-live="polite">
-          <div class="feedback-title" id="feedbackTitle">Correct! Great job! 🎉</div>
+          <div class="feedback-header-row">
+            <div class="feedback-title" id="feedbackTitle">Correct! Great job! 🎉</div>
+            <button id="btnReadFeedback" class="speech-btn speech-btn-feedback" type="button" aria-label="Listen to answer explanation">
+              🔊 Read Feedback
+            </button>
+          </div>
           <p class="feedback-detail" id="feedbackDetail"></p>
           <div class="explanation-box" id="feedbackExplanation"></div>
         </div>
@@ -127,7 +250,7 @@
       </article>
     </section>
 
-    <!-- Screen 3: Results View -->
+    <!-- Screen 5: Results View -->
     <section id="resultsView" class="view" aria-label="Quiz Results" style="display: none;">
       <div class="results-card">
         <div class="results-header">
@@ -160,7 +283,7 @@
           <div class="stat-box stat-subject">
             <div class="stat-icon">📚</div>
             <div class="stat-val" id="statSubjectName">Maths</div>
-            <div class="stat-lbl">Subject</div>
+            <div class="stat-lbl" id="statGradeBoardLabel">Grade 2 • CBSE</div>
           </div>
         </div>
 
@@ -170,14 +293,17 @@
             Play Again 🔄
           </button>
           <button id="btnChangeSubject" class="btn btn-secondary btn-large">
-            Choose Another Subject 🏠
+            Choose Another Subject 📚
           </button>
-          <button id="btnToggleReview" class="btn btn-outline btn-large">
+          <button id="btnChangeGrade" class="btn btn-outline btn-large">
+            Change Grade 🏠
+          </button>
+          <button id="btnToggleReview" class="btn btn-review btn-large">
             Review Questions 📝
           </button>
         </div>
 
-        <!-- Review Accordion/Section -->
+        <!-- Review Section -->
         <div id="reviewContainer" class="review-container" style="display: none;">
           <h3 class="review-title">Quiz Review: Your Answers</h3>
           <div id="reviewList" class="review-list">
@@ -189,12 +315,14 @@
   </main>
 
   <footer class="app-footer">
-    <p>Made with ❤️ for Grade 2 CBSE Learners • "Learn, Play and Shine!"</p>
+    <p>My Smart Learning Cards • CBSE & Telangana SSC Board • "Learn, Play and Shine!"</p>
   </footer>
 
   <!-- Scripts -->
   <script src="data/maths-questions.js"></script>
   <script src="data/ict-questions.js"></script>
+  <script src="data/grade5-ssc-maths-questions.js"></script>
+  <script src="data/grade5-ssc-science-questions.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/app.js"></script>
