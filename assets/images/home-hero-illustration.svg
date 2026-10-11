@@ -1,0 +1,315 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" width="100%" height="100%" role="img" aria-label="Happy children learning together with books, computer, and colorful shapes">
+  <defs>
+    <!-- Soft Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8F4FD" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#FEF9E7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F3EBFB" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF7675" stop-opacity="0.35"/>
+      <stop offset="25%" stop-color="#FED330" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#26DE81" stop-opacity="0.3"/>
+      <stop offset="75%" stop-color="#48DBFB" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#A55EEA" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA7"/>
+      <stop offset="100%" stop-color="#FED330"/>
+    </linearGradient>
+    <linearGradient id="compScreenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3A47"/>
+      <stop offset="100%" stop-color="#1E272E"/>
+    </linearGradient>
+    <linearGradient id="pencilGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FED330"/>
+      <stop offset="50%" stop-color="#FECA57"/>
+      <stop offset="100%" stop-color="#FF9F43"/>
+    </linearGradient>
+    <linearGradient id="bookCoverGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#EE5253"/>
+    </linearGradient>
+    <linearGradient id="bookCoverGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48DBFB"/>
+      <stop offset="100%" stop-color="#0ABDE3"/>
+    </linearGradient>
+    <linearGradient id="bookCoverGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DD1A1"/>
+      <stop offset="100%" stop-color="#10AC84"/>
+    </linearGradient>
+
+    <!-- Filters for soft glow and shadow -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2C3A47" flood-opacity="0.08"/>
+    </filter>
+    <filter id="floatGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FED330" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Ambient Pill & Soft Clouds -->
+  <rect x="10" y="8" width="780" height="244" rx="28" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative Gentle Rainbow Arch -->
+  <path d="M 60,220 C 140,70 660,70 740,220" fill="none" stroke="url(#rainbowGrad)" stroke-width="20" stroke-linecap="round"/>
+
+  <!-- Cheerful Background Floating Clouds -->
+  <g fill="#FFFFFF" opacity="0.75">
+    <path d="M 70,80 a 16,16 0 0 1 24,-6 a 22,22 0 0 1 36,4 a 16,16 0 0 1 18,14 l -78,0 z"/>
+    <path d="M 650,75 a 14,14 0 0 1 20,-5 a 18,18 0 0 1 30,3 a 14,14 0 0 1 16,12 l -66,0 z"/>
+    <path d="M 370,45 a 12,12 0 0 1 18,-4 a 16,16 0 0 1 26,3 a 12,12 0 0 1 14,10 l -58,0 z"/>
+  </g>
+
+  <!-- Floating Sparkles & Stars -->
+  <g fill="#FED330" filter="url(#floatGlow)">
+    <!-- Star Left -->
+    <path d="M 120,40 L 123,49 L 132,50 L 125,56 L 127,65 L 120,60 L 113,65 L 115,56 L 108,50 L 117,49 Z"/>
+    <!-- Small star top right -->
+    <path d="M 690,45 L 692,51 L 698,52 L 693,56 L 695,62 L 690,59 L 685,62 L 687,56 L 682,52 L 688,51 Z"/>
+    <!-- Mini star center -->
+    <path d="M 450,30 L 451,35 L 456,36 L 452,39 L 453,44 L 450,42 L 447,44 L 448,39 L 444,36 L 449,35 Z"/>
+    <!-- Sparkles -->
+    <circle cx="160" cy="95" r="3" fill="#FF7675"/>
+    <circle cx="280" cy="35" r="4" fill="#48DBFB"/>
+    <circle cx="530" cy="40" r="3.5" fill="#1DD1A1"/>
+    <circle cx="620" cy="85" r="3" fill="#A55EEA"/>
+  </g>
+
+  <!-- Floating Cheerful Learning Symbols -->
+  <g opacity="0.9">
+    <!-- Math Plus -->
+    <g transform="translate(145, 120)" filter="url(#softShadow)">
+      <circle cx="16" cy="16" r="16" fill="#FFEAA7"/>
+      <path d="M 16,9 L 16,23 M 9,16 L 23,16" stroke="#D35400" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- Math Multiply -->
+    <g transform="translate(635, 115)" filter="url(#softShadow)">
+      <circle cx="16" cy="16" r="16" fill="#C7ECEE"/>
+      <path d="M 11,11 L 21,21 M 21,11 L 11,21" stroke="#0ABDE3" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- Idea Lightbulb -->
+    <g transform="translate(390, 70)" filter="url(#softShadow)">
+      <circle cx="12" cy="12" r="11" fill="#FFF275"/>
+      <path d="M 9,21 L 15,21 M 10,24 L 14,24" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 9,12 Q 12,8 15,12" fill="none" stroke="#F39C12" stroke-width="1.8"/>
+      <!-- Glowing rays -->
+      <line x1="12" y1="-2" x2="12" y2="1" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+      <line x1="2" y1="4" x2="4" y2="6" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+      <line x1="22" y1="4" x2="20" y2="6" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Left Character: Happy Schoolboy holding Open Book -->
+  <g id="boyCharacter" transform="translate(195, 65)" filter="url(#softShadow)">
+    <!-- Boy Body / Shirt -->
+    <path d="M 28,110 Q 55,95 82,110 L 88,175 L 22,175 Z" fill="#48DBFB"/>
+    <!-- Collar & Tie/Badge -->
+    <polygon points="45,102 55,116 65,102" fill="#FFFFFF"/>
+    <polygon points="52,116 58,116 56,132 54,132" fill="#FF6B6B"/>
+    <!-- Boy Neck -->
+    <rect x="47" y="88" width="16" height="16" rx="4" fill="#F8C291"/>
+    <!-- Boy Head -->
+    <ellipse cx="55" cy="62" rx="30" ry="32" fill="#F8C291"/>
+    <!-- Cheerful Hair (Brown short curls) -->
+    <path d="M 24,54 C 24,24 86,22 86,54 C 86,40 68,30 55,32 C 40,32 26,42 24,54 Z" fill="#6D4C41"/>
+    <path d="M 23,55 Q 27,68 33,68 Q 30,52 23,55 Z" fill="#6D4C41"/>
+    <path d="M 87,55 Q 83,68 77,68 Q 80,52 87,55 Z" fill="#6D4C41"/>
+    <path d="M 35,36 Q 48,22 62,35 Q 70,25 76,34" fill="none" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+    <!-- Ears -->
+    <ellipse cx="25" cy="64" rx="5" ry="8" fill="#F8C291"/>
+    <ellipse cx="85" cy="64" rx="5" ry="8" fill="#F8C291"/>
+    <!-- Cute Eyes with sparkles -->
+    <ellipse cx="43" cy="58" rx="4.5" ry="6" fill="#2C3A47"/>
+    <circle cx="45" cy="56" r="1.8" fill="#FFFFFF"/>
+    <ellipse cx="67" cy="58" rx="4.5" ry="6" fill="#2C3A47"/>
+    <circle cx="69" cy="56" r="1.8" fill="#FFFFFF"/>
+    <!-- Happy Eyebrows -->
+    <path d="M 38,50 Q 44,46 48,49" fill="none" stroke="#5D4037" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M 62,49 Q 66,46 72,50" fill="none" stroke="#5D4037" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Rosy Cheeks -->
+    <circle cx="36" cy="67" r="5" fill="#FF7675" opacity="0.4"/>
+    <circle cx="74" cy="67" r="5" fill="#FF7675" opacity="0.4"/>
+    <!-- Big Smile -->
+    <path d="M 46,69 Q 55,80 64,69" fill="none" stroke="#C0392B" stroke-width="2.8" stroke-linecap="round"/>
+    
+    <!-- Open Book in Hands -->
+    <g transform="translate(18, 122)">
+      <!-- Left Page -->
+      <path d="M 37,22 C 22,12 8,15 0,18 L 4,50 C 14,46 26,44 37,50 Z" fill="#FFFFFF" stroke="#DFE4EA" stroke-width="1.5"/>
+      <!-- Right Page -->
+      <path d="M 37,22 C 52,12 66,15 74,18 L 70,50 C 60,46 48,44 37,50 Z" fill="#FFFFFF" stroke="#DFE4EA" stroke-width="1.5"/>
+      <!-- Book spine -->
+      <path d="M 37,20 L 37,51" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
+      <!-- Cover trim -->
+      <path d="M -2,20 L 2,53 C 14,48 25,47 37,52 C 49,47 60,48 72,53 L 76,20" fill="none" stroke="#EE5253" stroke-width="2.5"/>
+      <!-- Text & Symbols on pages -->
+      <text x="12" y="32" font-family="'Fredoka', sans-serif" font-size="10" font-weight="bold" fill="#5F27CD">1 2 3</text>
+      <text x="48" y="32" font-family="'Fredoka', sans-serif" font-size="10" font-weight="bold" fill="#10AC84">A B C</text>
+      <line x1="8" y1="40" x2="28" y2="40" stroke="#74B9FF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="46" y1="40" x2="66" y2="40" stroke="#FED330" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Cute hands holding book -->
+      <ellipse cx="2" cy="36" rx="6" ry="5" fill="#F8C291"/>
+      <ellipse cx="72" cy="36" rx="6" ry="5" fill="#F8C291"/>
+    </g>
+  </g>
+
+  <!-- Center-Right: Friendly Desktop Computer with smiling face -->
+  <g id="friendlyComputer" transform="translate(325, 95)" filter="url(#softShadow)">
+    <!-- Monitor Base & Stand -->
+    <rect x="42" y="112" width="20" height="20" rx="3" fill="#B2BEC3"/>
+    <ellipse cx="52" cy="132" rx="28" ry="6" fill="#747D8C"/>
+    <!-- Monitor Body -->
+    <rect x="2" y="8" width="100" height="106" rx="14" fill="#FFFFFF" stroke="#00D2D3" stroke-width="3.5"/>
+    <!-- Screen Inner -->
+    <rect x="10" y="16" width="84" height="74" rx="8" fill="url(#compScreenGrad)"/>
+    <!-- Cute Computer Face & Code on screen -->
+    <circle cx="34" cy="46" r="4.5" fill="#48DBFB"/>
+    <circle cx="35.5" cy="44.5" r="1.5" fill="#FFFFFF"/>
+    <circle cx="70" cy="46" r="4.5" fill="#48DBFB"/>
+    <circle cx="71.5" cy="44.5" r="1.5" fill="#FFFFFF"/>
+    <!-- Computer blush -->
+    <ellipse cx="27" cy="53" rx="4" ry="2.5" fill="#FF7675" opacity="0.6"/>
+    <ellipse cx="77" cy="53" rx="4" ry="2.5" fill="#FF7675" opacity="0.6"/>
+    <!-- Computer Smile -->
+    <path d="M 47,54 Q 52,60 57,54" fill="none" stroke="#1DD1A1" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Star on top of screen / Code sparkles -->
+    <text x="16" y="32" font-family="'Nunito', monospace" font-size="9" font-weight="900" fill="#FED330">&lt;/&gt;</text>
+    <text x="70" y="32" font-family="'Nunito', sans-serif" font-size="10" fill="#FF9FF3">★</text>
+    <path d="M 28,74 L 76,74" stroke="#48DBFB" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,3"/>
+    <!-- Little Web Cam on top -->
+    <circle cx="52" cy="12" r="2.5" fill="#2ED573"/>
+
+    <!-- Small colorful keyboard in front -->
+    <path d="M 12,130 L 92,130 L 98,142 L 6,142 Z" fill="#F1F2F6" stroke="#DFE4EA" stroke-width="1.5"/>
+    <!-- Key lines -->
+    <line x1="16" y1="135" x2="88" y2="135" stroke="#B2BEC3" stroke-width="2" stroke-dasharray="5,2"/>
+    <line x1="20" y1="139" x2="84" y2="139" stroke="#00D2D3" stroke-width="2" stroke-linecap="round"/>
+    <!-- Cute computer mouse -->
+    <ellipse cx="106" cy="138" rx="6" ry="8" fill="#FF9F43"/>
+    <path d="M 106,130 C 104,124 100,126 95,130" fill="none" stroke="#DFE4EA" stroke-width="1.2"/>
+  </g>
+
+  <!-- Right Character: Cheerful Schoolgirl holding Pencil & Celebrating -->
+  <g id="girlCharacter" transform="translate(485, 62)" filter="url(#softShadow)">
+    <!-- Girl Body / Dress -->
+    <path d="M 26,112 Q 55,98 84,112 L 95,178 L 15,178 Z" fill="#FF6B6B"/>
+    <!-- Cute Pattern on dress (yellow polka dots) -->
+    <circle cx="40" cy="135" r="2.5" fill="#FFEAA7"/>
+    <circle cx="65" cy="138" r="2.5" fill="#FFEAA7"/>
+    <circle cx="52" cy="155" r="2.5" fill="#FFEAA7"/>
+    <circle cx="34" cy="165" r="2.5" fill="#FFEAA7"/>
+    <circle cx="75" cy="162" r="2.5" fill="#FFEAA7"/>
+    <!-- Girl Neck -->
+    <rect x="47" y="88" width="16" height="16" rx="4" fill="#F8C291"/>
+    <!-- Girl Head -->
+    <ellipse cx="55" cy="62" rx="30" ry="32" fill="#F8C291"/>
+    <!-- Two cute pigtails with bows -->
+    <ellipse cx="14" cy="58" rx="14" ry="12" fill="#2C3A47"/>
+    <ellipse cx="96" cy="58" rx="14" ry="12" fill="#2C3A47"/>
+    <!-- Pigtail bows -->
+    <polygon points="22,54 26,60 22,66 18,60" fill="#FED330"/>
+    <polygon points="88,54 84,60 88,66 92,60" fill="#FED330"/>
+    <!-- Hair bangs -->
+    <path d="M 25,52 C 28,26 82,26 85,52 C 78,42 66,46 55,44 C 44,46 32,42 25,52 Z" fill="#2C3A47"/>
+    <!-- Cheerful Headband -->
+    <path d="M 25,48 C 36,36 74,36 85,48" fill="none" stroke="#FED330" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="55" cy="38" r="4" fill="#FF7675"/>
+    <!-- Ears -->
+    <ellipse cx="25" cy="64" rx="5" ry="8" fill="#F8C291"/>
+    <ellipse cx="85" cy="64" rx="5" ry="8" fill="#F8C291"/>
+    <!-- Big Sparkling Eyes with lashes -->
+    <ellipse cx="43" cy="58" rx="4.5" ry="6" fill="#2C3A47"/>
+    <circle cx="45" cy="56" r="1.8" fill="#FFFFFF"/>
+    <path d="M 37,54 L 40,56" stroke="#2C3A47" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="67" cy="58" rx="4.5" ry="6" fill="#2C3A47"/>
+    <circle cx="69" cy="56" r="1.8" fill="#FFFFFF"/>
+    <path d="M 73,54 L 70,56" stroke="#2C3A47" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Rosy Cheeks -->
+    <circle cx="35" cy="67" r="5.5" fill="#FF7675" opacity="0.45"/>
+    <circle cx="75" cy="67" r="5.5" fill="#FF7675" opacity="0.45"/>
+    <!-- Friendly Eyebrows -->
+    <path d="M 38,49 Q 43,45 48,48" fill="none" stroke="#2C3A47" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 62,48 Q 67,45 72,49" fill="none" stroke="#2C3A47" stroke-width="2" stroke-linecap="round"/>
+    <!-- Big Happy Open Smile with pink tongue -->
+    <path d="M 46,68 Q 55,82 64,68 Z" fill="#C0392B"/>
+    <path d="M 50,75 Q 55,71 60,75" fill="#FF7675"/>
+    
+    <!-- Left Hand: Waving enthusiastically -->
+    <g transform="translate(10, 85)">
+      <path d="M 18,30 Q 6,18 2,4" fill="none" stroke="#F8C291" stroke-width="10" stroke-linecap="round"/>
+      <ellipse cx="2" cy="4" rx="7" ry="8" fill="#F8C291"/>
+      <!-- Sparkle above hand -->
+      <polygon points="0,-10 2,-4 8,-2 2,0 0,6 -2,0 -8,-2 -2,-4" fill="#FED330"/>
+    </g>
+
+    <!-- Right Hand: Holding giant cheerful pencil -->
+    <g transform="translate(75, 75)">
+      <path d="M 12,38 Q 22,26 26,16" fill="none" stroke="#F8C291" stroke-width="10" stroke-linecap="round"/>
+      <ellipse cx="26" cy="16" rx="7" ry="7" fill="#F8C291"/>
+      
+      <!-- Giant Pencil tilted -->
+      <g transform="translate(16, -25) rotate(24)">
+        <!-- Eraser -->
+        <path d="M 4,0 L 16,0 C 18,0 18,-8 10,-8 C 2,-8 2,0 4,0 Z" fill="#FF7675"/>
+        <rect x="2" y="0" width="16" height="5" fill="#BDC3C7"/>
+        <!-- Pencil Shaft -->
+        <rect x="2" y="5" width="16" height="48" fill="url(#pencilGrad)"/>
+        <!-- Wood tip -->
+        <polygon points="2,53 18,53 10,68" fill="#F8C291"/>
+        <!-- Graphite tip -->
+        <polygon points="7,63 13,63 10,68" fill="#2C3A47"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Foreground: Stack of Colorful Books on Bottom Left & Right -->
+  <!-- Left Books Stack -->
+  <g transform="translate(90, 185)" filter="url(#softShadow)">
+    <!-- Book 1 (Bottom, Wide Purple) -->
+    <rect x="0" y="32" width="95" height="18" rx="4" fill="#5F27CD"/>
+    <rect x="9" y="35" width="82" height="12" fill="#FFFFFF"/>
+    <rect x="0" y="32" width="9" height="18" rx="2" fill="#341F97"/>
+    <!-- Book 2 (Middle, Mint Green) -->
+    <rect x="8" y="16" width="85" height="17" rx="4" fill="url(#bookCoverGrad3)"/>
+    <rect x="17" y="19" width="72" height="11" fill="#FFFFFF"/>
+    <rect x="8" y="16" width="9" height="17" rx="2" fill="#019F73"/>
+    <!-- Book 3 (Top, Coral Red) -->
+    <rect x="18" y="0" width="72" height="17" rx="4" fill="url(#bookCoverGrad1)"/>
+    <rect x="26" y="3" width="60" height="11" fill="#FFFFFF"/>
+    <rect x="18" y="0" width="8" height="17" rx="2" fill="#D63031"/>
+    <!-- Bookmark ribbon -->
+    <polygon points="70,12 76,12 73,26 70,22" fill="#FED330"/>
+  </g>
+
+  <!-- Right Side Elements: 3D Shapes & Award Trophy -->
+  <g transform="translate(620, 168)" filter="url(#softShadow)">
+    <!-- Golden Trophy Cup -->
+    <g transform="translate(45, 8)">
+      <ellipse cx="20" cy="55" rx="18" ry="4" fill="#D6A2E8"/>
+      <rect x="16" y="44" width="8" height="12" fill="#FED330"/>
+      <!-- Cup body -->
+      <path d="M 6,18 C 6,36 14,44 20,44 C 26,44 34,36 34,18 Z" fill="#FED330" stroke="#F1C40F" stroke-width="1.5"/>
+      <ellipse cx="20" cy="18" rx="14" ry="4" fill="#FFEAA7"/>
+      <!-- Trophy Handles -->
+      <path d="M 7,22 C 0,22 0,34 8,36" fill="none" stroke="#F1C40F" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 33,22 C 40,22 40,34 32,36" fill="none" stroke="#F1C40F" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Star on cup -->
+      <polygon points="20,24 22,29 27,29 23,32 25,37 20,34 15,37 17,32 13,29 18,29" fill="#E67E22"/>
+    </g>
+
+    <!-- Colorful 3D Learning Shapes (Cube, Sphere) -->
+    <!-- Turquoise Cube -->
+    <g transform="translate(0, 18)">
+      <!-- Front face -->
+      <rect x="4" y="14" width="26" height="26" rx="3" fill="#48DBFB"/>
+      <!-- Top face -->
+      <polygon points="4,14 16,4 42,4 30,14" fill="#70A1FF"/>
+      <!-- Right face -->
+      <polygon points="30,14 42,4 42,30 30,40" fill="#1B9CFC"/>
+      <!-- Cute number "10" on cube face -->
+      <text x="9" y="32" font-family="'Fredoka', sans-serif" font-size="12" font-weight="900" fill="#FFFFFF">10</text>
+    </g>
+  </g>
+
+</svg>

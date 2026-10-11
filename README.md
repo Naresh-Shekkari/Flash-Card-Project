@@ -29,6 +29,11 @@ Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
 ```text
 Flash-Card-Project/
 ├── index.html                           # Main application UI (Grades, Subjects, Flashcards)
+├── assets/
+│   └── images/
+│       ├── home-hero-illustration.svg   # Cheerful vector illustration for main grade selection
+│       ├── grade2-learning-art.svg      # Grade 2 CBSE vector learning illustration banner
+│       └── grade5-learning-art.svg      # Grade 5 Telangana SSC vector learning illustration banner
 ├── css/
 │   └── style.css                        # Cheerful, responsive, accessible styles & animations
 ├── js/
@@ -40,7 +45,7 @@ Flash-Card-Project/
 │   ├── ict-questions.js                 # Grade 2 CBSE ICT (100 questions)
 │   ├── grade5-ssc-maths-questions.js    # Grade 5 Telangana SSC Maths (100 questions)
 │   └── grade5-ssc-science-questions.js  # Grade 5 Telangana SSC Science (EVS) (100 questions)
-├── validate.js                          # 37-point automated verification test suite
+├── validate.js                          # 48-point automated verification test suite
 └── README.md                            # Documentation and deployment instructions
 ```
 
@@ -66,7 +71,7 @@ Double-click **`index.html`** in Windows File Explorer, or run in PowerShell:
 Start-Process index.html
 ```
 
-### 2. Run the Automated 37-Point Test Suite
+### 2. Run the Automated 48-Point Test Suite
 In PowerShell / terminal:
 ```powershell
 node validate.js
@@ -74,7 +79,7 @@ node validate.js
 Expected output:
 ```text
 ======================================================
-🎯 TEST RESULTS: 37 PASSED, 0 FAILED
+🎯 TEST RESULTS: 48 PASSED, 0 FAILED
 ======================================================
 ```
 
