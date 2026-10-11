@@ -1,9 +1,11 @@
 // =============================================================================
-// js/quiz.js - Quiz State Management & Core Logic
+// js/quiz.js - Quiz State Management & Core Logic (Grade 2 CBSE & Grade 5 SSC)
 // =============================================================================
 
 class QuizEngine {
   constructor() {
+    this.grade = 2;
+    this.board = 'CBSE';
     this.subject = 'Maths';
     this.totalQuestionsPerQuiz = 10;
     this.quizQuestions = [];
@@ -14,33 +16,43 @@ class QuizEngine {
   }
 
   /**
-   * Start a new quiz with 10 random questions from selected subject
+   * Start a new quiz with 10 random questions from selected subject and grade
+   * Backward-compatible default: grade = 2, board = 'CBSE'
    */
-  startQuiz(subjectName) {
+  startQuiz(subjectName, grade = 2, board = null) {
     this.subject = subjectName;
+    this.grade = grade;
+    this.board = board || (grade === 5 ? 'Telangana SSC' : 'CBSE');
     this.score = 0;
     this.currentIndex = 0;
     this.isAnswered = false;
     this.reviewData = [];
 
-    // Get subject pool
+    // Get subject pool according to grade and subject
     let pool = [];
-    if (typeof window !== 'undefined') {
+
+    const getFromEnv = (varName) => {
+      if (typeof window !== 'undefined' && window[varName]) return window[varName];
+      if (typeof global !== 'undefined' && global[varName]) return global[varName];
+      return [];
+    };
+
+    if (this.grade === 2) {
       if (subjectName === 'Maths') {
-        pool = window.MATHS_QUESTIONS || [];
+        pool = getFromEnv('MATHS_QUESTIONS');
       } else if (subjectName === 'ICT') {
-        pool = window.ICT_QUESTIONS || [];
+        pool = getFromEnv('ICT_QUESTIONS');
       }
-    } else if (typeof global !== 'undefined') {
+    } else if (this.grade === 5) {
       if (subjectName === 'Maths') {
-        pool = global.MATHS_QUESTIONS || [];
-      } else if (subjectName === 'ICT') {
-        pool = global.ICT_QUESTIONS || [];
+        pool = getFromEnv('GRADE5_MATHS_QUESTIONS');
+      } else if (subjectName === 'Science (EVS)' || subjectName === 'Science' || subjectName === 'EVS') {
+        pool = getFromEnv('GRADE5_SCIENCE_QUESTIONS');
       }
     }
 
     if (!pool || pool.length === 0) {
-      console.error('Question bank empty for', subjectName);
+      console.error('Question bank empty for Grade', this.grade, subjectName);
       return false;
     }
 
@@ -90,6 +102,8 @@ class QuizEngine {
       questionNumber: this.currentIndex + 1,
       id: currentQ.id,
       topic: currentQ.topic,
+      grade: currentQ.grade || this.grade,
+      board: currentQ.board || this.board,
       question: currentQ.question,
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQ.correctAnswer,
@@ -139,6 +153,8 @@ class QuizEngine {
     }
 
     return {
+      grade: this.grade,
+      board: this.board,
       subject: this.subject,
       score: this.score,
       total: this.totalQuestionsPerQuiz,

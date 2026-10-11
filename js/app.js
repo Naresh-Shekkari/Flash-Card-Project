@@ -1,25 +1,42 @@
 // =============================================================================
-// js/app.js - UI Wiring & Event Handlers
+// js/app.js - UI Wiring & Event Handlers (Grade 2 CBSE & Grade 5 SSC)
 // =============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
   const quiz = new window.QuizEngine();
+  const speech = window.speechHelper;
 
-  // DOM Elements
-  const homeView = document.getElementById('homeView');
+  // Active Grade Tracker: 2 or 5
+  let currentSelectedGrade = 2;
+
+  // DOM Elements - Views
+  const gradeSelectView = document.getElementById('gradeSelectView');
+  const subjectGrade2View = document.getElementById('subjectGrade2View');
+  const subjectGrade5View = document.getElementById('subjectGrade5View');
   const quizView = document.getElementById('quizView');
   const resultsView = document.getElementById('resultsView');
 
-  const btnStartMaths = document.getElementById('btnStartMaths');
-  const btnStartIct = document.getElementById('btnStartIct');
-  const btnQuitQuiz = document.getElementById('btnQuitQuiz');
-  const btnNextQuestion = document.getElementById('btnNextQuestion');
-  const btnPlayAgain = document.getElementById('btnPlayAgain');
-  const btnChangeSubject = document.getElementById('btnChangeSubject');
-  const btnToggleReview = document.getElementById('btnToggleReview');
+  // Header Elements
+  const headerLogoArea = document.getElementById('headerLogoArea');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
 
+  // Grade Select Buttons & Cards
+  const btnSelectGrade2 = document.getElementById('btnSelectGrade2');
+  const btnSelectGrade5 = document.getElementById('btnSelectGrade5');
+  const cardGrade2 = document.getElementById('cardGrade2');
+  const cardGrade5 = document.getElementById('cardGrade5');
+
+  // Subject Navigation Buttons
+  const btnBackToGradesFromG2 = document.getElementById('btnBackToGradesFromG2');
+  const btnBackToGradesFromG5 = document.getElementById('btnBackToGradesFromG5');
+  const btnStartMaths = document.getElementById('btnStartMaths');
+  const btnStartIct = document.getElementById('btnStartIct');
+  const btnStartG5Maths = document.getElementById('btnStartG5Maths');
+  const btnStartG5Science = document.getElementById('btnStartG5Science');
+
   // Quiz View Elements
+  const btnQuitQuiz = document.getElementById('btnQuitQuiz');
+  const quizGradeBoardLabel = document.getElementById('quizGradeBoardLabel');
   const quizSubjectLabel = document.getElementById('quizSubjectLabel');
   const liveScoreText = document.getElementById('liveScoreText');
   const progressBarFill = document.getElementById('progressBarFill');
@@ -32,6 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const feedbackTitle = document.getElementById('feedbackTitle');
   const feedbackDetail = document.getElementById('feedbackDetail');
   const feedbackExplanation = document.getElementById('feedbackExplanation');
+  const btnNextQuestion = document.getElementById('btnNextQuestion');
+
+  // Read-Aloud Speech Controls
+  const btnReadQuestion = document.getElementById('btnReadQuestion');
+  const btnReadOptions = document.getElementById('btnReadOptions');
+  const btnStopReading = document.getElementById('btnStopReading');
+  const speechStatusIndicator = document.getElementById('speechStatusIndicator');
+  const btnReadFeedback = document.getElementById('btnReadFeedback');
 
   // Results View Elements
   const trophyIcon = document.getElementById('trophyIcon');
@@ -42,10 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const statCorrectCount = document.getElementById('statCorrectCount');
   const statIncorrectCount = document.getElementById('statIncorrectCount');
   const statSubjectName = document.getElementById('statSubjectName');
+  const statGradeBoardLabel = document.getElementById('statGradeBoardLabel');
+  const btnPlayAgain = document.getElementById('btnPlayAgain');
+  const btnChangeSubject = document.getElementById('btnChangeSubject');
+  const btnChangeGrade = document.getElementById('btnChangeGrade');
+  const btnToggleReview = document.getElementById('btnToggleReview');
   const reviewContainer = document.getElementById('reviewContainer');
   const reviewList = document.getElementById('reviewList');
 
-  // Sound Toggle
+  // Current Answer Submission Result (for read-aloud feedback)
+  let lastAnswerResult = null;
+
+  // Sound Effects Toggle
   let soundEnabled = true;
   soundToggleBtn.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
@@ -53,42 +86,129 @@ document.addEventListener('DOMContentLoaded', () => {
     soundToggleBtn.textContent = soundEnabled ? '🔊 Sound On' : '🔇 Sound Off';
   });
 
-  // Switch Views
+  // Speech Helper State Change Listener
+  if (speech) {
+    speech.onStateChange = (isSpeaking, statusText) => {
+      if (isSpeaking) {
+        if (btnStopReading) btnStopReading.style.display = 'inline-flex';
+        if (speechStatusIndicator) {
+          speechStatusIndicator.style.display = 'inline-block';
+          speechStatusIndicator.textContent = `🗣️ ${statusText || 'Speaking...'}`;
+        }
+      } else {
+        if (btnStopReading) btnStopReading.style.display = 'none';
+        if (speechStatusIndicator) {
+          speechStatusIndicator.style.display = 'none';
+        }
+      }
+    };
+  }
+
+  // Switch View Helper
   function showView(viewName) {
-    homeView.style.display = 'none';
+    // Always cancel ongoing speech on view transitions
+    if (speech) speech.stop();
+
+    gradeSelectView.style.display = 'none';
+    subjectGrade2View.style.display = 'none';
+    subjectGrade5View.style.display = 'none';
     quizView.style.display = 'none';
     resultsView.style.display = 'none';
 
-    if (viewName === 'home') homeView.style.display = 'flex';
+    if (viewName === 'gradeSelect') gradeSelectView.style.display = 'flex';
+    if (viewName === 'subjectGrade2') subjectGrade2View.style.display = 'flex';
+    if (viewName === 'subjectGrade5') subjectGrade5View.style.display = 'flex';
     if (viewName === 'quiz') quizView.style.display = 'flex';
     if (viewName === 'results') resultsView.style.display = 'flex';
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Start Quiz
-  function startSubjectQuiz(subjectName) {
-    const ok = quiz.startQuiz(subjectName);
+  // Grade Selection Handlers
+  function chooseGrade(gradeNum) {
+    currentSelectedGrade = gradeNum;
+    if (gradeNum === 2) {
+      showView('subjectGrade2');
+    } else if (gradeNum === 5) {
+      showView('subjectGrade5');
+    }
+  }
+
+  btnSelectGrade2.addEventListener('click', () => chooseGrade(2));
+  cardGrade2.addEventListener('click', () => chooseGrade(2));
+  cardGrade2.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      chooseGrade(2);
+    }
+  });
+
+  btnSelectGrade5.addEventListener('click', () => chooseGrade(5));
+  cardGrade5.addEventListener('click', () => chooseGrade(5));
+  cardGrade5.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      chooseGrade(5);
+    }
+  });
+
+  // Back to Grade Selection
+  btnBackToGradesFromG2.addEventListener('click', () => showView('gradeSelect'));
+  btnBackToGradesFromG5.addEventListener('click', () => showView('gradeSelect'));
+  headerLogoArea.addEventListener('click', () => showView('gradeSelect'));
+  headerLogoArea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showView('gradeSelect');
+    }
+  });
+
+  // Start Quiz for a chosen subject and grade
+  function startSubjectQuiz(subjectName, gradeNum) {
+    const boardName = (gradeNum === 5) ? 'Telangana SSC' : 'CBSE';
+    const ok = quiz.startQuiz(subjectName, gradeNum, boardName);
     if (!ok) {
-      alert('Could not start quiz. Please ensure questions are loaded.');
+      alert(`Could not start quiz. Please ensure questions are loaded for Grade ${gradeNum} ${subjectName}.`);
       return;
     }
-    quizSubjectLabel.textContent = subjectName === 'Maths' ? '📐 Maths' : '💻 ICT';
+
+    currentSelectedGrade = gradeNum;
+    quizGradeBoardLabel.textContent = `Grade ${gradeNum} • ${boardName}`;
+    if (subjectName === 'Maths') {
+      quizSubjectLabel.textContent = '📐 Maths';
+    } else if (subjectName === 'ICT') {
+      quizSubjectLabel.textContent = '💻 ICT';
+    } else if (subjectName === 'Science (EVS)' || subjectName === 'Science') {
+      quizSubjectLabel.textContent = '🔬 Science (EVS)';
+    } else {
+      quizSubjectLabel.textContent = subjectName;
+    }
+
     showView('quiz');
     renderQuestion();
   }
 
-  // Render Current Question
+  // Hook Subject Start Buttons
+  btnStartMaths.addEventListener('click', () => startSubjectQuiz('Maths', 2));
+  btnStartIct.addEventListener('click', () => startSubjectQuiz('ICT', 2));
+  btnStartG5Maths.addEventListener('click', () => startSubjectQuiz('Maths', 5));
+  btnStartG5Science.addEventListener('click', () => startSubjectQuiz('Science (EVS)', 5));
+
+  // Render Current Flashcard Question
   function renderQuestion() {
+    // Cancel any speech from previous question
+    if (speech) speech.stop();
+    lastAnswerResult = null;
+
     const q = quiz.getCurrentQuestion();
     const currentNum = quiz.currentIndex + 1;
     const total = quiz.totalQuestionsPerQuiz;
 
-    // Update Header Status
+    // Header updates
     liveScoreText.textContent = quiz.score;
     const progressPercent = Math.round((currentNum / total) * 100);
     progressBarFill.style.width = progressPercent + '%';
-    progressText.textContent = 'Question ' + currentNum + ' of ' + total;
+    progressText.textContent = `Question ${currentNum} of ${total}`;
 
     // Card Details
     cardTopicTag.textContent = q.topic;
@@ -99,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     feedbackBox.style.display = 'none';
     btnNextQuestion.style.display = 'none';
 
-    // Clear Options Grid
+    // Clear and build options grid
     optionsGrid.innerHTML = '';
     const prefixes = ['A', 'B', 'C', 'D'];
 
@@ -107,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.setAttribute('type', 'button');
-      btn.setAttribute('aria-label', 'Option ' + prefixes[idx] + ': ' + optText);
+      btn.setAttribute('aria-label', `Option ${prefixes[idx]}: ${optText}`);
 
       btn.innerHTML = `
         <span class="option-prefix">${prefixes[idx]}</span>
@@ -121,17 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle Option Click
   function handleOptionClick(selectedBtn, chosenAnswer) {
-    const result = quiz.submitAnswer(chosenAnswer);
-    if (!result) return; // Prevent multiple clicks
+    // Cancel any ongoing speech when an answer is chosen
+    if (speech) speech.stop();
 
-    // Disable all options
+    const result = quiz.submitAnswer(chosenAnswer);
+    if (!result) return; // Prevent repeated clicks
+
+    lastAnswerResult = result;
+
+    // Lock all options for this question
     const optionButtons = optionsGrid.querySelectorAll('.option-btn');
     optionButtons.forEach(btn => btn.disabled = true);
 
-    // Update live score
+    // Update live score display
     liveScoreText.textContent = result.score;
 
-    // Highlight Buttons
+    // Highlight correct option in green
     optionButtons.forEach(btn => {
       const btnText = btn.querySelector('.option-text').textContent;
       if (btnText === result.correctAnswer) {
@@ -139,11 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // If incorrect, highlight selected option in red
     if (!result.isCorrect) {
       selectedBtn.classList.add('btn-incorrect');
     }
 
-    // Show Feedback Box
+    // Display Feedback Box
     feedbackBox.className = 'feedback-box ' + (result.isCorrect ? 'correct' : 'incorrect');
     if (result.isCorrect) {
       feedbackTitle.textContent = 'Correct! Great job! 🎉';
@@ -158,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     feedbackExplanation.textContent = '💡 ' + result.explanation;
     feedbackBox.style.display = 'block';
 
-    // Show Next Button or Results
+    // Next Button
     if (quiz.hasNextQuestion()) {
       btnNextQuestion.textContent = 'Next Question ➔';
     } else {
@@ -168,8 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNextQuestion.focus();
   }
 
-  // Next Question Button
+  // Next Question Button Click
   btnNextQuestion.addEventListener('click', () => {
+    if (speech) speech.stop();
     if (quiz.hasNextQuestion()) {
       quiz.nextQuestion();
       renderQuestion();
@@ -178,13 +305,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Read-Aloud Button Event Listeners
+  btnReadQuestion.addEventListener('click', () => {
+    const q = quiz.getCurrentQuestion();
+    if (!q) return;
+    if (!speech || !speech.isSupported()) {
+      alert('Audio reading is not available in this browser. Please try Chrome or Microsoft Edge.');
+      return;
+    }
+    speech.speakQuestion(q.question);
+  });
+
+  btnReadOptions.addEventListener('click', () => {
+    const q = quiz.getCurrentQuestion();
+    if (!q) return;
+    if (!speech || !speech.isSupported()) {
+      alert('Audio reading is not available in this browser. Please try Chrome or Microsoft Edge.');
+      return;
+    }
+    speech.speakOptions(q.options);
+  });
+
+  btnStopReading.addEventListener('click', () => {
+    if (speech) speech.stop();
+  });
+
+  btnReadFeedback.addEventListener('click', () => {
+    if (!lastAnswerResult) return;
+    if (!speech || !speech.isSupported()) {
+      alert('Audio reading is not available in this browser. Please try Chrome or Microsoft Edge.');
+      return;
+    }
+    speech.speakFeedback(
+      lastAnswerResult.isCorrect,
+      lastAnswerResult.correctAnswer,
+      lastAnswerResult.explanation
+    );
+  });
+
   // Show Results Screen
   function showResults() {
+    if (speech) speech.stop();
     const res = quiz.getResults();
 
     trophyIcon.textContent = res.trophy;
     resultsHeading.textContent = res.message;
-    resultsSubtext.textContent = 'You completed the ' + res.subject + ' quiz!';
+    resultsSubtext.textContent = `You completed the Grade ${res.grade} (${res.board}) ${res.subject} quiz!`;
 
     finalScoreNumerator.textContent = res.score;
     finalPercentage.textContent = res.percentage + '%';
@@ -192,8 +358,8 @@ document.addEventListener('DOMContentLoaded', () => {
     statCorrectCount.textContent = res.correctCount;
     statIncorrectCount.textContent = res.incorrectCount;
     statSubjectName.textContent = res.subject;
+    statGradeBoardLabel.textContent = `Grade ${res.grade} • ${res.board}`;
 
-    // Play celebration fanfare if high score
     if (res.score >= 8) {
       window.soundEffects.playCelebration();
     }
@@ -204,10 +370,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const revItem = document.createElement('div');
       revItem.className = 'review-item ' + (item.isCorrect ? 'review-correct' : 'review-incorrect');
 
+      const reviewAudioBtnId = `btnRevSpeak_${item.id}`;
+
       revItem.innerHTML = `
         <div class="review-q-header">
-          <span>Question ${item.questionNumber} (${item.topic})</span>
-          <span>${item.isCorrect ? '✅ 1/1 Mark' : '❌ 0/1 Mark'}</span>
+          <div class="review-q-left">
+            <span class="review-q-badge">Question ${item.questionNumber} (${item.topic})</span>
+            <span class="review-q-mark">${item.isCorrect ? '✅ 1/1 Mark' : '❌ 0/1 Mark'}</span>
+          </div>
+          <button id="${reviewAudioBtnId}" class="speech-btn speech-btn-small" type="button" title="Listen to question">
+            🔊 Listen
+          </button>
         </div>
         <div class="review-question">${item.question}</div>
         <div class="review-ans-row">
@@ -217,6 +390,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="review-expl">💡 ${item.explanation}</div>
       `;
       reviewList.appendChild(revItem);
+
+      // Attach audio handler to review card
+      const revSpeakBtn = revItem.querySelector(`#${reviewAudioBtnId}`);
+      if (revSpeakBtn) {
+        revSpeakBtn.addEventListener('click', () => {
+          if (!speech || !speech.isSupported()) return;
+          const readText = `${item.question}. Correct answer is: ${item.correctAnswer}. ${item.explanation}`;
+          speech.speak(readText, `Review Q${item.questionNumber}`);
+        });
+      }
     });
 
     reviewContainer.style.display = 'none';
@@ -232,33 +415,69 @@ document.addEventListener('DOMContentLoaded', () => {
       btnToggleReview.textContent = 'Hide Review ▲';
       reviewContainer.scrollIntoView({ behavior: 'smooth' });
     } else {
+      if (speech) speech.stop();
       reviewContainer.style.display = 'none';
       btnToggleReview.textContent = 'Review Questions 📝';
     }
   });
 
-  // Navigation Event Handlers
-  btnStartMaths.addEventListener('click', () => startSubjectQuiz('Maths'));
-  btnStartIct.addEventListener('click', () => startSubjectQuiz('ICT'));
+  // Quit / Exit Quiz Handler
   btnQuitQuiz.addEventListener('click', () => {
+    if (speech) speech.stop();
     if (confirm('Are you sure you want to exit? Your current quiz progress will be lost.')) {
-      showView('home');
+      if (quiz.grade === 5) {
+        showView('subjectGrade5');
+      } else {
+        showView('subjectGrade2');
+      }
     }
   });
-  btnPlayAgain.addEventListener('click', () => startSubjectQuiz(quiz.subject));
-  btnChangeSubject.addEventListener('click', () => showView('home'));
 
-  // Keyboard accessibility: 1, 2, 3, 4 for options; Enter for next
+  // Results Actions
+  btnPlayAgain.addEventListener('click', () => {
+    startSubjectQuiz(quiz.subject, quiz.grade);
+  });
+
+  btnChangeSubject.addEventListener('click', () => {
+    if (quiz.grade === 5) {
+      showView('subjectGrade5');
+    } else {
+      showView('subjectGrade2');
+    }
+  });
+
+  btnChangeGrade.addEventListener('click', () => {
+    showView('gradeSelect');
+  });
+
+  // Global Keyboard Shortcuts
   window.addEventListener('keydown', (e) => {
+    // When quiz is active
     if (quizView.style.display === 'flex') {
       const optionButtons = optionsGrid.querySelectorAll('.option-btn');
+
+      // 1-4 for options
       if (['1', '2', '3', '4'].includes(e.key)) {
         const idx = parseInt(e.key, 10) - 1;
         if (optionButtons[idx] && !optionButtons[idx].disabled) {
           optionButtons[idx].click();
         }
-      } else if (e.key === 'Enter' && btnNextQuestion.style.display === 'block') {
+      }
+      // Enter for Next Question
+      else if (e.key === 'Enter' && btnNextQuestion.style.display === 'block') {
         btnNextQuestion.click();
+      }
+      // 'r' to read question
+      else if ((e.key === 'r' || e.key === 'R') && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        btnReadQuestion.click();
+      }
+      // 'o' to read options
+      else if ((e.key === 'o' || e.key === 'O') && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        btnReadOptions.click();
+      }
+      // Escape or 's' to stop reading
+      else if (e.key === 'Escape' || ((e.key === 's' || e.key === 'S') && speech && speech.isSpeaking)) {
+        if (speech) speech.stop();
       }
     }
   });
