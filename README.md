@@ -17,6 +17,8 @@ Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
    - **Science (EVS)**: 100 questions covering animal senses, Nallamala forests & Chenchus, seed dispersal, digestion & balanced diet, water harvesting & Mission Bhagiratha, historic Telangana forts (Golconda, Ramappa, Warangal), and environmental conservation.
 3. **🎨 Memory Color Challenge — Observe, Remember, and Color!**:
    - Special educational activity primarily designed for Grade 2 learners.
+   - **Expanded Picture Bank (20 Diverse Themes)**: Country House, Garden Butterfly, School Bus, Fruit Basket, Ocean Fish, Animal Farm, Playground Slide, Duck Pond, High Kite, Space Rocket, Teddy Bear & Honey Pot, Steam Train, Fairy Tale Castle, Birthday Cake, Hot Air Balloon, Dinosaur Valley, Sailing Boat, Winter Snowman, Playful Robot, and Safari Lion.
+   - **Non-Repeating Picture Selection**: Smart history queue prevents consecutive and recent repetitions across games and reloads, keeping every round fresh and exciting.
    - **60-Second Observation Phase**: A fully colored educational picture is displayed with a live countdown timer.
    - **Coloring Phase**: The matching outline picture appears, and the child recreates the colors from memory using a 10-color palette.
    - **Scoring**: Exactly 10 marks per picture (1 mark per correct region). Max score: 10/10.
@@ -89,7 +91,7 @@ node validate.js
 Expected output:
 ```text
 ======================================================
-🎯 TEST RESULTS: 86 PASSED, 0 FAILED
+🎯 TEST RESULTS: 88 PASSED, 0 FAILED
 ======================================================
 ```
 

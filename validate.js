@@ -205,8 +205,8 @@ assert(htmlContent.includes('js/memory-color-game.js'), 'index.html includes js/
 assert(htmlContent.includes('id="memoryColorView"'), 'index.html defines memoryColorView section');
 assert(htmlContent.includes('id="cardMemoryColor"'), 'index.html defines cardMemoryColor activity card on home screen');
 
-// 17. Memory Color Picture Bank Verification (At least 10 pictures, exactly 10 regions each)
-assert(Array.isArray(MEMORY_COLOR_PICTURES) && MEMORY_COLOR_PICTURES.length >= 10, `Memory Color picture bank has at least 10 pictures (Found: ${MEMORY_COLOR_PICTURES.length})`);
+// 17. Memory Color Picture Bank Verification (At least 20 pictures, exactly 10 regions each)
+assert(Array.isArray(MEMORY_COLOR_PICTURES) && MEMORY_COLOR_PICTURES.length >= 20, `Memory Color picture bank has at least 20 pictures (Found: ${MEMORY_COLOR_PICTURES.length})`);
 assert(Array.isArray(MEMORY_COLORS) && MEMORY_COLORS.length >= 10, `Palette has at least 10 distinct colors (Found: ${MEMORY_COLORS.length})`);
 
 const validPaletteHexes = new Set(MEMORY_COLORS.map(c => normalizeHex(c.hex)));
@@ -233,6 +233,25 @@ const picA = game.pickRandomPicture();
 game.lastPictureId = picA.id;
 const picB = game.pickRandomPicture();
 assert(picB.id !== picA.id, `pickRandomPicture avoids consecutive repeat (${picA.id} -> ${picB.id})`);
+
+// Test: Sequential 10 draws never repeat any picture
+const sequenceGame = new MemoryColorGame(MEMORY_COLOR_PICTURES, MEMORY_COLORS);
+const drawnIds = [];
+for (let i = 0; i < 10; i++) {
+  const drawn = sequenceGame.pickRandomPicture();
+  drawnIds.push(drawn.id);
+}
+const uniqueDrawnCount = new Set(drawnIds).size;
+assert(uniqueDrawnCount === 10, `pickRandomPicture ensures 10 consecutive draws are all distinct (Found: ${uniqueDrawnCount} unique)`);
+
+// Test: SVG generation across all 20 pictures
+const allSvgsValid = MEMORY_COLOR_PICTURES.every(pic => {
+  const coloredSvg = game.buildSvgString(pic, 'colored');
+  const outlineSvg = game.buildSvgString(pic, 'outline');
+  const pathCount = (coloredSvg.match(/<path/g) || []).length;
+  return coloredSvg.includes('<svg') && outlineSvg.includes('<svg') && pathCount === 10;
+});
+assert(allSvgsValid, 'All 20 pictures successfully generate valid SVGs with 10 paths each');
 
 // Test scoring scenarios on Picture 1
 const testPic = MEMORY_COLOR_PICTURES[0];

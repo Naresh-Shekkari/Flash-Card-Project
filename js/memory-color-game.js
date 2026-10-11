@@ -18,6 +18,18 @@ class MemoryColorGame {
     this.timerId = null;
     this.timerStartTime = 0;
     this.durationMs = 60000; // 60 seconds observation
+    this.playedHistory = []; // Recent history to avoid duplicate pictures
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      try {
+        const saved = window.sessionStorage.getItem('mc_played_history');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) this.playedHistory = parsed;
+        }
+      } catch (e) {
+        // Ignore sessionStorage restrictions if any
+      }
+    }
     this.isSubmitted = false;
     this.score = 0;
     this.resultsBreakdown = [];
@@ -91,7 +103,7 @@ class MemoryColorGame {
     }
   }
 
-  // Select a random picture avoiding immediate consecutive duplicate
+  // Select a random picture ensuring varied selection without repeats
   pickRandomPicture(preferredId = null) {
     if (!this.pictures || this.pictures.length === 0) return null;
     if (preferredId) {
@@ -101,10 +113,43 @@ class MemoryColorGame {
 
     if (this.pictures.length === 1) return this.pictures[0];
 
-    const available = this.pictures.filter(p => p.id !== this.lastPictureId);
+    if (!Array.isArray(this.playedHistory)) {
+      this.playedHistory = [];
+    }
+
+    // Sync with external lastPictureId if set (e.g. in test assertions)
+    if (this.lastPictureId && !this.playedHistory.includes(this.lastPictureId)) {
+      this.playedHistory.push(this.lastPictureId);
+    }
+
+    // Allow history to keep up to (pictures.length - 1) items, or 75% of deck
+    const maxHistory = Math.max(1, Math.min(this.pictures.length - 1, Math.floor(this.pictures.length * 0.75)));
+    while (this.playedHistory.length > maxHistory) {
+      this.playedHistory.shift();
+    }
+
+    // Filter out recently played pictures
+    let available = this.pictures.filter(p => !this.playedHistory.includes(p.id));
+    if (available.length === 0) {
+      available = this.pictures.filter(p => p.id !== this.lastPictureId);
+    }
     const pool = available.length > 0 ? available : this.pictures;
+
     const randomIndex = Math.floor(Math.random() * pool.length);
-    return pool[randomIndex];
+    const chosen = pool[randomIndex];
+
+    if (chosen) {
+      this.playedHistory.push(chosen.id);
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        try {
+          window.sessionStorage.setItem('mc_played_history', JSON.stringify(this.playedHistory));
+        } catch (e) {
+          // Ignore sessionStorage restrictions if any
+        }
+      }
+    }
+
+    return chosen;
   }
 
   // Start Challenge (Phase A: 60-second observation)
