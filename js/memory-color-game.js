@@ -17,7 +17,7 @@ class MemoryColorGame {
     this.selectedColor = this.colors.length > 0 ? this.colors[0].hex : '#FF4757';
     this.timerId = null;
     this.timerStartTime = 0;
-    this.durationMs = 60000; // 60 seconds observation
+    this.durationMs = 30000; // 30 seconds observation
     this.playedHistory = []; // Recent history to avoid duplicate pictures
     if (typeof window !== 'undefined' && window.sessionStorage) {
       try {
@@ -152,7 +152,7 @@ class MemoryColorGame {
     return chosen;
   }
 
-  // Start Challenge (Phase A: 60-second observation)
+  // Start Challenge (Phase A: 30-second observation)
   startChallenge(preferredPictureId = null) {
     this.cleanup();
 
