@@ -486,16 +486,16 @@ class MemoryColorGame {
     if (headingEl) headingEl.textContent = feedback.title;
 
     const subtextEl = document.getElementById('mcResultsSubtext');
-    if (subtextEl) subEl = subtextEl.textContent = feedback.text;
+    if (subtextEl) subtextEl.textContent = feedback.text;
 
     const scoreNumEl = document.getElementById('mcFinalScoreNum');
-    if (scoreNumEl) scoreNumEl.textContent = this.score;
+    if (scoreNumEl) scoreNumEl.textContent = String(this.score);
 
     const correctCountEl = document.getElementById('mcStatCorrectCount');
-    if (correctCountEl) correctCountEl.textContent = this.score;
+    if (correctCountEl) correctCountEl.textContent = String(this.score);
 
     const incorrectCountEl = document.getElementById('mcStatIncorrectCount');
-    if (incorrectCountEl) incorrectCountEl.textContent = 10 - this.score;
+    if (incorrectCountEl) incorrectCountEl.textContent = String(10 - this.score);
 
     const picNameEl = document.getElementById('mcStatPictureName');
     if (picNameEl) picNameEl.textContent = this.currentPicture.title;

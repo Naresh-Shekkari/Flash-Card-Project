@@ -305,6 +305,37 @@ assert(game.timerId !== null, 'Countdown timer starts successfully');
 game.cleanup();
 assert(game.timerId === null && game.phase === 'idle', 'Cleanup stops active timer and resets phase safely');
 
+// Test renderResultsPhase DOM updating with wrong answers (verifies fix for 10/10 bug)
+const mockElements = {};
+global.document = {
+  getElementById: (id) => {
+    if (!mockElements[id]) mockElements[id] = { textContent: '', innerHTML: '', style: {}, appendChild: () => {} };
+    return mockElements[id];
+  },
+  createElement: () => ({ setAttribute: () => {}, appendChild: () => {}, className: '' })
+};
+
+game.dom = {
+  resultsPhase: { style: {} },
+  observePhase: { style: {} },
+  coloringPhase: { style: {} },
+  container: { offsetTop: 0 }
+};
+
+// Scenario: Child scores 3/10
+game.score = 3;
+game.renderResultsPhase();
+assert(mockElements['mcFinalScoreNum'].textContent === '3', `renderResultsPhase sets mcFinalScoreNum to 3 (Found: ${mockElements['mcFinalScoreNum'].textContent})`);
+assert(mockElements['mcStatCorrectCount'].textContent === '3', `renderResultsPhase sets mcStatCorrectCount to 3 (Found: ${mockElements['mcStatCorrectCount'].textContent})`);
+assert(mockElements['mcStatIncorrectCount'].textContent === '7', `renderResultsPhase sets mcStatIncorrectCount to 7 (Found: ${mockElements['mcStatIncorrectCount'].textContent})`);
+
+// Scenario: Child scores 0/10
+game.score = 0;
+game.renderResultsPhase();
+assert(mockElements['mcFinalScoreNum'].textContent === '0', `renderResultsPhase sets mcFinalScoreNum to 0 for wrong coloring (Found: ${mockElements['mcFinalScoreNum'].textContent})`);
+assert(mockElements['mcStatCorrectCount'].textContent === '0', `renderResultsPhase sets mcStatCorrectCount to 0 (Found: ${mockElements['mcStatCorrectCount'].textContent})`);
+assert(mockElements['mcStatIncorrectCount'].textContent === '10', `renderResultsPhase sets mcStatIncorrectCount to 10 (Found: ${mockElements['mcStatIncorrectCount'].textContent})`);
+
 console.log('\n======================================================');
 console.log(`🎯 TEST RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('======================================================\n');
