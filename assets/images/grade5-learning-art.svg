@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 230" width="100%" height="100%" role="img" aria-label="Grade 5 Telangana SSC Maths and Science banner with microscope, fractions, geometry compass, plant seedling, and astronomy">
+  <defs>
+    <!-- Background Gradient for Grade 5 -->
+    <linearGradient id="g5BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3EBFB"/>
+      <stop offset="50%" stop-color="#E8F8F5"/>
+      <stop offset="100%" stop-color="#EBF5FB"/>
+    </linearGradient>
+    <linearGradient id="flaskLiquid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1DD1A1"/>
+      <stop offset="100%" stop-color="#10AC84"/>
+    </linearGradient>
+    <linearGradient id="saturnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F39C12"/>
+      <stop offset="50%" stop-color="#FED330"/>
+      <stop offset="100%" stop-color="#E67E22"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5F27CD"/>
+      <stop offset="100%" stop-color="#341F97"/>
+    </linearGradient>
+
+    <!-- Shadow filters -->
+    <filter id="g5Shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#2C3A47" flood-opacity="0.09"/>
+    </filter>
+  </defs>
+
+  <!-- Banner Card Base -->
+  <rect x="8" y="6" width="784" height="218" rx="26" fill="url(#g5BgGrad)" stroke="#D6A2E8" stroke-width="2"/>
+
+  <!-- Background Scientific & Mathematical Constellations / Doodles -->
+  <g opacity="0.28" fill="none" stroke-linecap="round">
+    <!-- Math angles & grid -->
+    <path d="M 65,35 L 90,65 L 120,65" stroke="#5F27CD" stroke-width="2.5"/>
+    <circle cx="90" cy="65" r="8" stroke="#5F27CD" stroke-width="1.5" stroke-dasharray="2,2"/>
+    <!-- Atom / orbit loops -->
+    <ellipse cx="690" cy="45" rx="30" ry="10" stroke="#10AC84" stroke-width="2" transform="rotate(-25 690 45)"/>
+    <ellipse cx="690" cy="45" rx="30" ry="10" stroke="#0ABDE3" stroke-width="2" transform="rotate(35 690 45)"/>
+    <circle cx="690" cy="45" r="3.5" fill="#10AC84"/>
+    <!-- Water molecule -->
+    <circle cx="510" cy="35" r="6" stroke="#48DBFB" stroke-width="2"/>
+    <line x1="514" y1="39" x2="524" y2="46" stroke="#48DBFB" stroke-width="2"/>
+    <circle cx="527" cy="48" r="4" stroke="#48DBFB" stroke-width="1.8"/>
+  </g>
+
+  <!-- Twinkling stars -->
+  <g fill="#FED330">
+    <polygon points="145,26 147,31 152,32 148,35 150,40 145,37 140,40 142,35 138,32 143,31"/>
+    <polygon points="380,24 382,29 387,30 383,33 385,38 380,35 375,38 377,33 373,30 378,29"/>
+    <polygon points="615,22 617,27 622,28 618,31 620,36 615,33 610,36 612,31 608,28 613,27"/>
+  </g>
+
+  <!-- 1. Left Section: Grade 5 Mathematics (Geometry, Fractions, Compass) -->
+  <g transform="translate(32, 50)" filter="url(#g5Shadow)">
+    <!-- Mathematical Protractor -->
+    <g transform="translate(10, 10)">
+      <!-- Semicircle base -->
+      <path d="M 0,55 A 50,50 0 0,1 100,55 Z" fill="#E8F4FD" stroke="#0ABDE3" stroke-width="2.5"/>
+      <path d="M 30,55 A 20,20 0 0,1 70,55 Z" fill="#FFFFFF" stroke="#0ABDE3" stroke-width="1.8"/>
+      <!-- Angle tick marks -->
+      <line x1="50" y1="5" x2="50" y2="12" stroke="#0ABDE3" stroke-width="2"/>
+      <line x1="15" y1="40" x2="22" y2="43" stroke="#0ABDE3" stroke-width="1.8"/>
+      <line x1="85" y1="40" x2="78" y2="43" stroke="#0ABDE3" stroke-width="1.8"/>
+      <line x1="28" y1="20" x2="34" y2="25" stroke="#0ABDE3" stroke-width="1.8"/>
+      <line x1="72" y1="20" x2="66" y2="25" stroke="#0ABDE3" stroke-width="1.8"/>
+      <circle cx="50" cy="55" r="3" fill="#0ABDE3"/>
+      <text x="50" y="24" font-family="'Nunito', sans-serif" font-size="8" font-weight="800" fill="#0984E3" text-anchor="middle">90°</text>
+    </g>
+
+    <!-- Fraction Pie Chart (3/4 shaded purple/blue) -->
+    <g transform="translate(115, 12)">
+      <circle cx="28" cy="28" r="26" fill="#FFFFFF" stroke="#5F27CD" stroke-width="2.5"/>
+      <!-- 3 quarters shaded (270 degrees) -->
+      <path d="M 28,28 L 28,2 A 26,26 0 1,1 2,28 Z" fill="#5F27CD" opacity="0.85"/>
+      <!-- Quarter dividing lines -->
+      <line x1="28" y1="2" x2="28" y2="54" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="2" y1="28" x2="54" y2="28" stroke="#FFFFFF" stroke-width="2"/>
+      <!-- Fraction badge -->
+      <rect x="12" y="60" width="32" height="20" rx="6" fill="#FFEAA7"/>
+      <text x="28" y="74" font-family="'Fredoka', sans-serif" font-size="12" font-weight="900" fill="#D35400" text-anchor="middle">¾</text>
+    </g>
+
+    <!-- Geometry Compass Drawing an Arc -->
+    <g transform="translate(180, 20)">
+      <!-- Left leg (metal needle) -->
+      <line x1="22" y1="4" x2="4" y2="58" stroke="#747D8C" stroke-width="3.5" stroke-linecap="round"/>
+      <polygon points="4,58 2,64 6,64" fill="#2C3A47"/>
+      <!-- Right leg (pencil attachment) -->
+      <line x1="22" y1="4" x2="38" y2="44" stroke="#747D8C" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="34" y="42" width="6" height="20" fill="#FF9F43" rx="1"/>
+      <polygon points="34,62 40,62 37,68" fill="#2C3A47"/>
+      <!-- Compass top hinge -->
+      <circle cx="22" cy="4" r="5" fill="#5F27CD"/>
+      <rect x="20" y="-8" width="4" height="8" rx="2" fill="#5F27CD"/>
+      <!-- Arc drawn by pencil -->
+      <path d="M 46,65 A 36,36 0 0,1 24,78" fill="none" stroke="#FF9F43" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,3"/>
+    </g>
+
+    <!-- Mini chalkboard formula badge -->
+    <g transform="translate(20, 88)">
+      <rect x="0" y="0" width="138" height="28" rx="7" fill="#2C3A47" stroke="#95A5A6" stroke-width="1.5"/>
+      <text x="69" y="19" font-family="'Nunito', monospace" font-size="11" font-weight="800" fill="#1DD1A1" text-anchor="middle">Area = L × W 📐</text>
+    </g>
+  </g>
+
+  <!-- 2. Center Section: Proud Grade 5 Student with Science & Nature elements -->
+  <g id="g5Student" transform="translate(325, 34)" filter="url(#g5Shadow)">
+    <!-- Student Body / Uniform (Smart Navy / Royal Purple with tie) -->
+    <path d="M 30,94 Q 58,80 86,94 L 92,162 L 24,162 Z" fill="#5F27CD"/>
+    <!-- Collar & Green Tie (EVS theme) -->
+    <polygon points="48,88 58,102 68,88" fill="#FFFFFF"/>
+    <polygon points="55,102 61,102 59,124 57,124" fill="#10AC84"/>
+    <!-- Student Neck & Head -->
+    <rect x="50" y="74" width="16" height="16" fill="#F8C291"/>
+    <ellipse cx="58" cy="48" rx="28" ry="30" fill="#F8C291"/>
+
+    <!-- Hair (Neat modern styling) -->
+    <path d="M 30,42 C 30,16 88,14 88,42 C 84,28 72,22 58,22 C 44,22 34,28 30,42 Z" fill="#4B2C20"/>
+    <ellipse cx="29" cy="49" rx="4" ry="7" fill="#F8C291"/>
+    <ellipse cx="87" cy="49" rx="4" ry="7" fill="#F8C291"/>
+
+    <!-- Confident Smart Eyes with sparkles -->
+    <ellipse cx="46" cy="46" rx="4" ry="5.5" fill="#2C3A47"/>
+    <circle cx="47.5" cy="44.5" r="1.6" fill="#FFFFFF"/>
+    <ellipse cx="70" cy="46" rx="4" ry="5.5" fill="#2C3A47"/>
+    <circle cx="71.5" cy="44.5" r="1.6" fill="#FFFFFF"/>
+    <!-- Eyebrows -->
+    <path d="M 40,38 Q 46,34 52,38" fill="none" stroke="#4B2C20" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M 64,38 Q 70,34 76,38" fill="none" stroke="#4B2C20" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Cheerful Smile -->
+    <path d="M 49,57 Q 58,67 67,57" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Light blush -->
+    <circle cx="39" cy="55" r="4.5" fill="#FF7675" opacity="0.35"/>
+    <circle cx="77" cy="55" r="4.5" fill="#FF7675" opacity="0.35"/>
+
+    <!-- Student holding Observation Clipboard -->
+    <g transform="translate(68, 72)">
+      <!-- Arm -->
+      <path d="M 12,24 Q 24,14 30,4" fill="none" stroke="#F8C291" stroke-width="8" stroke-linecap="round"/>
+      <!-- Clipboard -->
+      <rect x="22" y="-12" width="34" height="46" rx="4" fill="#F1F2F6" stroke="#BDC3C7" stroke-width="1.5"/>
+      <rect x="32" y="-16" width="14" height="6" rx="2" fill="#7F8C8D"/>
+      <!-- Checklist items -->
+      <line x1="28" y1="-4" x2="34" y2="-4" stroke="#10AC84" stroke-width="2" stroke-linecap="round"/>
+      <line x1="38" y1="-4" x2="50" y2="-4" stroke="#747D8C" stroke-width="1.5"/>
+      <line x1="28" y1="4" x2="34" y2="4" stroke="#10AC84" stroke-width="2" stroke-linecap="round"/>
+      <line x1="38" y1="4" x2="50" y2="4" stroke="#747D8C" stroke-width="1.5"/>
+      <line x1="28" y1="12" x2="34" y2="12" stroke="#10AC84" stroke-width="2" stroke-linecap="round"/>
+      <line x1="38" y1="12" x2="50" y2="12" stroke="#747D8C" stroke-width="1.5"/>
+      <!-- Hand holding clip -->
+      <ellipse cx="28" cy="8" rx="5" ry="5" fill="#F8C291"/>
+    </g>
+
+    <!-- Sprouting Plant Seedling (Telangana EVS & Forests theme) -->
+    <g transform="translate(-35, 82)">
+      <!-- Glass pot / beaker -->
+      <path d="M 6,18 L 10,42 L 30,42 L 34,18 Z" fill="#E8F8F5" stroke="#10AC84" stroke-width="1.8"/>
+      <!-- Soil in pot -->
+      <path d="M 9,30 L 11,41 L 29,41 L 31,30 Z" fill="#795548"/>
+      <!-- Green stem & leaves -->
+      <path d="M 20,30 Q 18,18 20,4" fill="none" stroke="#2ED573" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Left leaf -->
+      <path d="M 19,16 Q 8,12 12,6 Q 18,12 19,16 Z" fill="#2ED573"/>
+      <!-- Right leaf -->
+      <path d="M 20,10 Q 30,6 28,0 Q 22,6 20,10 Z" fill="#26DE81"/>
+      <!-- Eco sparkle -->
+      <circle cx="28" cy="-4" r="2.5" fill="#FED330"/>
+    </g>
+  </g>
+
+  <!-- 3. Center Badge: Telangana SSC Board Pill -->
+  <g transform="translate(435, 12)">
+    <rect x="0" y="0" width="170" height="26" rx="13" fill="#E0DCF8"/>
+    <text x="85" y="17" font-family="'Fredoka', sans-serif" font-size="12" font-weight="800" fill="#4834D4" text-anchor="middle">🎯 Telangana SSC Board</text>
+  </g>
+
+  <!-- 4. Right Section: Grade 5 Science (Microscope, Flask, Planet, Magnet) -->
+  <g transform="translate(545, 45)" filter="url(#g5Shadow)">
+    <!-- Scientific Microscope -->
+    <g transform="translate(10, 8)">
+      <!-- Base of microscope -->
+      <rect x="10" y="90" width="48" height="12" rx="4" fill="#2C3A47"/>
+      <!-- Curved arm -->
+      <path d="M 46,90 C 46,55 58,35 40,25" fill="none" stroke="#2C3A47" stroke-width="8" stroke-linecap="round"/>
+      <!-- Stage -->
+      <rect x="14" y="64" width="36" height="6" rx="2" fill="#747D8C"/>
+      <!-- Glass slide with specimen dot -->
+      <rect x="22" y="62" width="20" height="3" fill="#74B9FF"/>
+      <circle cx="32" cy="63.5" r="1.5" fill="#EE5253"/>
+      <!-- Objective lens turret -->
+      <rect x="26" y="46" width="12" height="12" rx="2" fill="#BDC3C7"/>
+      <polygon points="29,58 35,58 33,63 31,63" fill="#FED330"/>
+      <!-- Eyepiece body & tube -->
+      <rect x="18" y="16" width="14" height="28" rx="3" fill="#34495E" transform="rotate(-20 25 30)"/>
+      <ellipse cx="30" cy="10" rx="8" ry="4" fill="#10AC84"/>
+      <!-- Focus knob -->
+      <circle cx="48" cy="60" r="5" fill="#FED330"/>
+    </g>
+
+    <!-- Bubbling Erlenmeyer Flask with green solution -->
+    <g transform="translate(75, 15)">
+      <!-- Flask neck & lip -->
+      <rect x="22" y="12" width="12" height="24" fill="#E4F1FE" stroke="#48DBFB" stroke-width="1.8"/>
+      <ellipse cx="28" cy="12" rx="8" ry="3" fill="#FFFFFF" stroke="#48DBFB" stroke-width="1.8"/>
+      <!-- Flask body triangle -->
+      <polygon points="22,34 2,78 54,78 34,34" fill="#E4F1FE" stroke="#48DBFB" stroke-width="1.8"/>
+      <!-- Glowing green solution inside -->
+      <polygon points="18,48 4,76 52,76 38,48" fill="url(#flaskLiquid)"/>
+      <!-- Solution bubbles -->
+      <circle cx="28" cy="56" r="3" fill="#FFFFFF" opacity="0.7"/>
+      <circle cx="20" cy="66" r="2.5" fill="#FFFFFF" opacity="0.7"/>
+      <circle cx="36" cy="68" r="2" fill="#FFFFFF" opacity="0.7"/>
+      <!-- Rising vapor bubbles -->
+      <circle cx="28" cy="4" r="3" fill="#1DD1A1"/>
+      <circle cx="33" cy="-4" r="2.5" fill="#2ED573"/>
+      <circle cx="24" cy="-10" r="2" fill="#26DE81"/>
+    </g>
+
+    <!-- Planet Saturn (Astronomy & Solar System unit) -->
+    <g transform="translate(142, 6)">
+      <!-- Planet Ring Back -->
+      <ellipse cx="30" cy="28" rx="36" ry="10" fill="none" stroke="#FED330" stroke-width="4" transform="rotate(-20 30 28)" stroke-dasharray="0 55 55 0"/>
+      <!-- Planet Sphere -->
+      <circle cx="30" cy="28" r="18" fill="url(#saturnGrad)"/>
+      <path d="M 14,24 Q 30,22 46,24" stroke="#E67E22" stroke-width="2" fill="none" opacity="0.6"/>
+      <path d="M 12,30 Q 30,32 48,30" stroke="#F39C12" stroke-width="2" fill="none" opacity="0.6"/>
+      <!-- Planet Ring Front -->
+      <ellipse cx="30" cy="28" rx="36" ry="10" fill="none" stroke="#FED330" stroke-width="4" transform="rotate(-20 30 28)" stroke-dasharray="55 55 0 0"/>
+      <!-- Ring highlight -->
+      <ellipse cx="30" cy="28" rx="33" ry="8" fill="none" stroke="#FFF275" stroke-width="1.5" transform="rotate(-20 30 28)" stroke-dasharray="50 50 0 0"/>
+    </g>
+
+    <!-- Red & Blue Horseshoe Magnet with magnetic sparks -->
+    <g transform="translate(145, 68)">
+      <!-- Magnet curve -->
+      <path d="M 6,18 C 6,0 36,0 36,18 L 36,32 L 26,32 L 26,18 C 26,8 16,8 16,18 L 16,32 L 6,32 Z" fill="#EE5253"/>
+      <!-- Blue South Pole tips -->
+      <rect x="6" y="22" width="10" height="10" fill="#0984E3"/>
+      <rect x="26" y="22" width="10" height="10" fill="#0984E3"/>
+      <text x="11" y="30" font-family="'Nunito', sans-serif" font-size="7" font-weight="900" fill="#FFFFFF" text-anchor="middle">S</text>
+      <text x="31" y="30" font-family="'Nunito', sans-serif" font-size="7" font-weight="900" fill="#FFFFFF" text-anchor="middle">N</text>
+      <!-- Spark lines -->
+      <path d="M 11,36 L 11,40 M 31,36 L 31,40" stroke="#FED330" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

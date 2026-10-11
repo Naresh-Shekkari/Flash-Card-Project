@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 230" width="100%" height="100%" role="img" aria-label="Grade 2 primary learning banner with math shapes, abacus, computer, school bag, and cheerful students">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="g2BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9E6"/>
+      <stop offset="50%" stop-color="#FFF0D4"/>
+      <stop offset="100%" stop-color="#EBF5FB"/>
+    </linearGradient>
+    <linearGradient id="g2PillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF9F43"/>
+      <stop offset="100%" stop-color="#EE5253"/>
+    </linearGradient>
+    <linearGradient id="abacusWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F39C12"/>
+      <stop offset="100%" stop-color="#D35400"/>
+    </linearGradient>
+    <linearGradient id="compScreenG2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3A47"/>
+      <stop offset="100%" stop-color="#34495E"/>
+    </linearGradient>
+
+    <!-- Shadow filters -->
+    <filter id="g2Shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#2C3A47" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Banner Card Base -->
+  <rect x="8" y="6" width="784" height="218" rx="26" fill="url(#g2BgGrad)" stroke="#FFEAA7" stroke-width="2"/>
+
+  <!-- Decorative Background Doodles -->
+  <g opacity="0.35" fill="none" stroke-linecap="round">
+    <!-- Math symbols floating -->
+    <path d="M 60,45 L 75,45 M 67.5,37.5 L 67.5,52.5" stroke="#FF9F43" stroke-width="3"/>
+    <path d="M 175,35 L 190,35" stroke="#EE5253" stroke-width="3"/>
+    <path d="M 285,42 L 300,42 M 285,48 L 300,48" stroke="#0ABDE3" stroke-width="3"/>
+    <path d="M 645,40 L 660,40 M 645,46 L 660,46" stroke="#10AC84" stroke-width="3"/>
+    <path d="M 725,50 L 740,50 M 732.5,42.5 L 732.5,57.5" stroke="#5F27CD" stroke-width="3"/>
+  </g>
+
+  <!-- Stars & Twinkles -->
+  <g fill="#FED330">
+    <polygon points="120,28 122,34 128,35 123,39 125,45 120,41 115,45 117,39 112,35 118,34"/>
+    <polygon points="410,25 412,30 417,31 413,34 415,39 410,36 405,39 407,34 403,31 408,30"/>
+    <polygon points="690,30 692,36 698,37 693,41 695,47 690,43 685,47 687,41 682,37 688,36"/>
+    <circle cx="490" cy="35" r="3.5" fill="#FF7675"/>
+    <circle cx="230" cy="50" r="3" fill="#48DBFB"/>
+  </g>
+
+  <!-- 1. Left Element: Colorful School Backpack with Ruler & Pencil -->
+  <g transform="translate(42, 60)" filter="url(#g2Shadow)">
+    <!-- Backpack Straps -->
+    <path d="M 12,20 C 5,4 40,4 34,22" fill="none" stroke="#EE5253" stroke-width="5" stroke-linecap="round"/>
+    <!-- Pencil sticking out -->
+    <g transform="translate(18, -18) rotate(-15)">
+      <rect x="0" y="8" width="8" height="26" fill="#FED330"/>
+      <polygon points="0,8 8,8 4,0" fill="#F8C291"/>
+      <polygon points="2,4 6,4 4,0" fill="#2C3A47"/>
+      <rect x="0" y="30" width="8" height="6" fill="#FF7675"/>
+    </g>
+    <!-- Ruler sticking out -->
+    <g transform="translate(36, -22) rotate(18)">
+      <rect x="0" y="0" width="10" height="34" rx="2" fill="#74B9FF"/>
+      <line x1="0" y1="6" x2="4" y2="6" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="12" x2="6" y2="12" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="18" x2="4" y2="18" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="24" x2="6" y2="24" stroke="#0984E3" stroke-width="1.2"/>
+    </g>
+    <!-- Backpack Main Body -->
+    <rect x="6" y="20" width="56" height="64" rx="14" fill="#FF6B6B"/>
+    <!-- Front pocket -->
+    <rect x="12" y="44" width="44" height="34" rx="8" fill="#FF9F43"/>
+    <line x1="16" y1="44" x2="52" y2="44" stroke="#EE5253" stroke-width="3" stroke-linecap="round"/>
+    <!-- Cute smiley patch on pocket -->
+    <circle cx="34" cy="62" r="8" fill="#FED330"/>
+    <circle cx="31.5" cy="60" r="1.2" fill="#2C3A47"/>
+    <circle cx="36.5" cy="60" r="1.2" fill="#2C3A47"/>
+    <path d="M 31.5,63 Q 34,66 36.5,63" fill="none" stroke="#2C3A47" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Side pocket with water bottle -->
+    <rect x="58" y="40" width="10" height="26" rx="4" fill="#1DD1A1"/>
+    <rect x="60" y="34" width="6" height="8" rx="2" fill="#10AC84"/>
+  </g>
+
+  <!-- 2. Colorful Abacus (Maths tool for Grade 2) -->
+  <g transform="translate(145, 75)" filter="url(#g2Shadow)">
+    <!-- Wooden Frame -->
+    <rect x="0" y="0" width="84" height="66" rx="6" fill="#F8C291" stroke="#D35400" stroke-width="3"/>
+    <!-- Horizontal wires -->
+    <line x1="4" y1="16" x2="80" y2="16" stroke="#BDC3C7" stroke-width="2"/>
+    <line x1="4" y1="33" x2="80" y2="33" stroke="#BDC3C7" stroke-width="2"/>
+    <line x1="4" y1="50" x2="80" y2="50" stroke="#BDC3C7" stroke-width="2"/>
+    
+    <!-- Wire 1 Beads (Red / Yellow) -->
+    <ellipse cx="14" cy="16" rx="5" ry="7" fill="#FF6B6B"/>
+    <ellipse cx="23" cy="16" rx="5" ry="7" fill="#FF6B6B"/>
+    <ellipse cx="58" cy="16" rx="5" ry="7" fill="#FED330"/>
+    <ellipse cx="67" cy="16" rx="5" ry="7" fill="#FED330"/>
+
+    <!-- Wire 2 Beads (Green / Blue) -->
+    <ellipse cx="14" cy="33" rx="5" ry="7" fill="#1DD1A1"/>
+    <ellipse cx="23" cy="33" rx="5" ry="7" fill="#1DD1A1"/>
+    <ellipse cx="32" cy="33" rx="5" ry="7" fill="#1DD1A1"/>
+    <ellipse cx="67" cy="33" rx="5" ry="7" fill="#48DBFB"/>
+
+    <!-- Wire 3 Beads (Purple / Orange) -->
+    <ellipse cx="14" cy="50" rx="5" ry="7" fill="#9B59B6"/>
+    <ellipse cx="48" cy="50" rx="5" ry="7" fill="#FF9F43"/>
+    <ellipse cx="57" cy="50" rx="5" ry="7" fill="#FF9F43"/>
+    <ellipse cx="66" cy="50" rx="5" ry="7" fill="#FF9F43"/>
+  </g>
+
+  <!-- 3. Center Character: Adorable Grade 2 Student with Star Badge -->
+  <g id="g2Kid" transform="translate(295, 38)" filter="url(#g2Shadow)">
+    <!-- Body / Uniform (Bright Orange / Yellow) -->
+    <path d="M 32,88 Q 55,75 78,88 L 84,155 L 26,155 Z" fill="#FF9F43"/>
+    <polygon points="46,82 55,96 64,82" fill="#FFFFFF"/>
+    <circle cx="55" cy="110" r="3" fill="#FFFFFF"/>
+    <circle cx="55" cy="125" r="3" fill="#FFFFFF"/>
+
+    <!-- Head & Neck -->
+    <rect x="47" y="70" width="16" height="15" fill="#F8C291"/>
+    <ellipse cx="55" cy="46" rx="27" ry="29" fill="#F8C291"/>
+    
+    <!-- Hair (Curly black cute hair) -->
+    <path d="M 28,40 C 26,16 84,16 82,40 C 78,28 66,22 55,22 C 44,22 32,28 28,40 Z" fill="#2C3A47"/>
+    <ellipse cx="28" cy="46" rx="4" ry="6" fill="#F8C291"/>
+    <ellipse cx="82" cy="46" rx="4" ry="6" fill="#F8C291"/>
+    
+    <!-- Big cute round glasses -->
+    <circle cx="44" cy="44" r="10" fill="none" stroke="#5F27CD" stroke-width="2.5"/>
+    <circle cx="66" cy="44" r="10" fill="none" stroke="#5F27CD" stroke-width="2.5"/>
+    <line x1="54" y1="44" x2="56" y2="44" stroke="#5F27CD" stroke-width="2.5"/>
+    <!-- Smiling Eyes inside glasses -->
+    <path d="M 40,43 Q 44,40 48,43" fill="none" stroke="#2C3A47" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M 62,43 Q 66,40 70,43" fill="none" stroke="#2C3A47" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Rosy Cheeks -->
+    <circle cx="36" cy="52" r="4.5" fill="#FF7675" opacity="0.45"/>
+    <circle cx="74" cy="52" r="4.5" fill="#FF7675" opacity="0.45"/>
+    <!-- Cheerful Open Smile -->
+    <path d="M 47,54 Q 55,64 63,54" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Arms holding "GRADE 2" Gold Star Badge -->
+    <g transform="translate(62, 60)">
+      <path d="M 12,24 Q 28,14 36,-2" fill="none" stroke="#F8C291" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="36" cy="-2" rx="6" ry="6" fill="#F8C291"/>
+    </g>
+
+    <!-- Glowing Star Badge with "2" -->
+    <g transform="translate(86, 32)">
+      <!-- Golden Burst Star -->
+      <polygon points="26,0 34,14 50,12 40,24 48,38 32,34 24,48 18,34 2,36 10,24 2,12 18,14" fill="#FED330" stroke="#F39C12" stroke-width="2"/>
+      <circle cx="25" cy="24" r="16" fill="#FFF275"/>
+      <text x="25" y="32" font-family="'Fredoka', 'Nunito', sans-serif" font-size="22" font-weight="900" fill="#D35400" text-anchor="middle">2</text>
+    </g>
+  </g>
+
+  <!-- 4. Center-Right: Grade 2 Primary Badge & Tagline -->
+  <g transform="translate(460, 52)">
+    <!-- Pill badge -->
+    <rect x="0" y="8" width="130" height="28" rx="14" fill="#FFEAA7"/>
+    <text x="65" y="27" font-family="'Fredoka', sans-serif" font-size="13" font-weight="700" fill="#D35400" text-anchor="middle">⭐ CBSE Grade 2</text>
+    <!-- Big Vibrant Numbers 1 • 2 • 3 -->
+    <g transform="translate(10, 48)">
+      <rect x="0" y="0" width="32" height="34" rx="8" fill="#FF6B6B" filter="url(#g2Shadow)"/>
+      <text x="16" y="24" font-family="'Fredoka', sans-serif" font-size="20" font-weight="900" fill="#FFFFFF" text-anchor="middle">1</text>
+      
+      <rect x="38" y="0" width="32" height="34" rx="8" fill="#FED330" filter="url(#g2Shadow)"/>
+      <text x="54" y="24" font-family="'Fredoka', sans-serif" font-size="20" font-weight="900" fill="#2C3A47" text-anchor="middle">2</text>
+
+      <rect x="76" y="0" width="32" height="34" rx="8" fill="#1DD1A1" filter="url(#g2Shadow)"/>
+      <text x="92" y="24" font-family="'Fredoka', sans-serif" font-size="20" font-weight="900" fill="#FFFFFF" text-anchor="middle">3</text>
+    </g>
+    <!-- Shapes below: Circle, Triangle, Square -->
+    <g transform="translate(12, 92)">
+      <circle cx="14" cy="14" r="12" fill="#48DBFB"/>
+      <polygon points="52,2 64,26 40,26" fill="#FF9FF3"/>
+      <rect x="80" y="2" width="22" height="22" rx="4" fill="#A55EEA"/>
+    </g>
+  </g>
+
+  <!-- 5. Right Element: Cheerful ICT Friendly Laptop & Mouse -->
+  <g transform="translate(625, 68)" filter="url(#g2Shadow)">
+    <!-- Laptop screen open -->
+    <rect x="12" y="4" width="94" height="64" rx="8" fill="#34495E" stroke="#48DBFB" stroke-width="2.5"/>
+    <rect x="18" y="10" width="82" height="52" rx="4" fill="url(#compScreenG2)"/>
+    
+    <!-- Screen content: Cute smiley robot & Code symbols -->
+    <circle cx="46" cy="32" r="14" fill="#00D2D3"/>
+    <!-- Robot antenna -->
+    <line x1="46" y1="18" x2="46" y2="13" stroke="#00D2D3" stroke-width="2"/>
+    <circle cx="46" cy="12" r="2.5" fill="#FED330"/>
+    <!-- Robot eyes -->
+    <circle cx="41" cy="30" r="2.5" fill="#2C3A47"/>
+    <circle cx="51" cy="30" r="2.5" fill="#2C3A47"/>
+    <path d="M 42,37 Q 46,41 50,37" fill="none" stroke="#2C3A47" stroke-width="1.8" stroke-linecap="round"/>
+    
+    <!-- Little binary & star on screen -->
+    <text x="68" y="26" font-family="'Nunito', sans-serif" font-size="8" font-weight="bold" fill="#FED330">101</text>
+    <text x="68" y="38" font-family="'Nunito', sans-serif" font-size="8" font-weight="bold" fill="#1DD1A1">&lt;/&gt;</text>
+    <text x="70" y="50" font-family="'Nunito', sans-serif" font-size="9" fill="#FF7675">★</text>
+
+    <!-- Laptop Base / Keyboard -->
+    <path d="M 0,68 L 118,68 L 110,84 L 8,84 Z" fill="#BDC3C7"/>
+    <rect x="46" y="74" width="26" height="7" rx="2" fill="#7F8C8D"/>
+
+    <!-- Mouse -->
+    <ellipse cx="128" cy="80" rx="7" ry="9" fill="#FF9F43"/>
+    <path d="M 128,71 C 124,66 118,68 114,72" fill="none" stroke="#95A5A6" stroke-width="1.2"/>
+  </g>
+</svg>

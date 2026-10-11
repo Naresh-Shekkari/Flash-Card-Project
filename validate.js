@@ -158,6 +158,39 @@ assert(fs.existsSync('./data/grade5-ssc-maths-questions.js'), 'data/grade5-ssc-m
 assert(fs.existsSync('./data/grade5-ssc-science-questions.js'), 'data/grade5-ssc-science-questions.js exists');
 assert(fs.existsSync('./README.md'), 'README.md exists');
 
+// 14. Visual Enhancement Assets & Markup Verification
+assert(fs.existsSync('./assets/images/home-hero-illustration.svg'), 'assets/images/home-hero-illustration.svg exists');
+assert(fs.existsSync('./assets/images/grade2-learning-art.svg'), 'assets/images/grade2-learning-art.svg exists');
+assert(fs.existsSync('./assets/images/grade5-learning-art.svg'), 'assets/images/grade5-learning-art.svg exists');
+
+const htmlContent = fs.readFileSync('./index.html', 'utf8');
+assert(htmlContent.includes('assets/images/home-hero-illustration.svg'), 'index.html references home hero SVG illustration');
+assert(htmlContent.includes('assets/images/grade2-learning-art.svg'), 'index.html references Grade 2 learning art SVG');
+assert(htmlContent.includes('assets/images/grade5-learning-art.svg'), 'index.html references Grade 5 learning art SVG');
+
+const cssContent = fs.readFileSync('./css/style.css', 'utf8');
+assert(cssContent.includes('.screen-illustration-banner'), 'css/style.css defines .screen-illustration-banner');
+assert(cssContent.includes('.home-hero-banner'), 'css/style.css defines .home-hero-banner');
+assert(cssContent.includes('.grade2-banner'), 'css/style.css defines .grade2-banner');
+assert(cssContent.includes('.grade5-banner'), 'css/style.css defines .grade5-banner');
+assert(cssContent.includes('@media (max-width: 480px)'), 'css/style.css contains responsive mobile media query');
+
+// 15. SVG XML Well-Formedness & Attribute Integrity
+function checkSvgWellFormed(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const tagMatches = content.match(/<[a-zA-Z0-9]+(\s+[^>]+)?>/g) || [];
+  for (const tag of tagMatches) {
+    const attrMatches = tag.match(/([a-zA-Z0-9_-]+)=["'][^"']*["']/g) || [];
+    const attrNames = attrMatches.map(a => a.split('=')[0]);
+    if (new Set(attrNames).size !== attrNames.length) return false;
+  }
+  return content.includes('<svg') && content.includes('</svg>');
+}
+
+assert(checkSvgWellFormed('./assets/images/home-hero-illustration.svg'), 'assets/images/home-hero-illustration.svg is well-formed XML with zero duplicate attributes');
+assert(checkSvgWellFormed('./assets/images/grade2-learning-art.svg'), 'assets/images/grade2-learning-art.svg is well-formed XML with zero duplicate attributes');
+assert(checkSvgWellFormed('./assets/images/grade5-learning-art.svg'), 'assets/images/grade5-learning-art.svg is well-formed XML with zero duplicate attributes');
+
 console.log('\n======================================================');
 console.log(`🎯 TEST RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('======================================================\n');
