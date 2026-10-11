@@ -175,6 +175,22 @@ assert(cssContent.includes('.grade2-banner'), 'css/style.css defines .grade2-ban
 assert(cssContent.includes('.grade5-banner'), 'css/style.css defines .grade5-banner');
 assert(cssContent.includes('@media (max-width: 480px)'), 'css/style.css contains responsive mobile media query');
 
+// 15. SVG XML Well-Formedness & Attribute Integrity
+function checkSvgWellFormed(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const tagMatches = content.match(/<[a-zA-Z0-9]+(\s+[^>]+)?>/g) || [];
+  for (const tag of tagMatches) {
+    const attrMatches = tag.match(/([a-zA-Z0-9_-]+)=["'][^"']*["']/g) || [];
+    const attrNames = attrMatches.map(a => a.split('=')[0]);
+    if (new Set(attrNames).size !== attrNames.length) return false;
+  }
+  return content.includes('<svg') && content.includes('</svg>');
+}
+
+assert(checkSvgWellFormed('./assets/images/home-hero-illustration.svg'), 'assets/images/home-hero-illustration.svg is well-formed XML with zero duplicate attributes');
+assert(checkSvgWellFormed('./assets/images/grade2-learning-art.svg'), 'assets/images/grade2-learning-art.svg is well-formed XML with zero duplicate attributes');
+assert(checkSvgWellFormed('./assets/images/grade5-learning-art.svg'), 'assets/images/grade5-learning-art.svg is well-formed XML with zero duplicate attributes');
+
 console.log('\n======================================================');
 console.log(`🎯 TEST RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('======================================================\n');

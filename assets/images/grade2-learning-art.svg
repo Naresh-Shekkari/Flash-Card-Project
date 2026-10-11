@@ -62,9 +62,9 @@
     <g transform="translate(36, -22) rotate(18)">
       <rect x="0" y="0" width="10" height="34" rx="2" fill="#74B9FF"/>
       <line x1="0" y1="6" x2="4" y2="6" stroke="#0984E3" stroke-width="1.2"/>
-      <line x1="0" y1="12" x2="6" x2="12" stroke="#0984E3" stroke-width="1.2"/>
-      <line x1="0" y1="18" x2="4" x2="18" stroke="#0984E3" stroke-width="1.2"/>
-      <line x1="0" y1="24" x2="6" x2="24" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="12" x2="6" y2="12" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="18" x2="4" y2="18" stroke="#0984E3" stroke-width="1.2"/>
+      <line x1="0" y1="24" x2="6" y2="24" stroke="#0984E3" stroke-width="1.2"/>
     </g>
     <!-- Backpack Main Body -->
     <rect x="6" y="20" width="56" height="64" rx="14" fill="#FF6B6B"/>
@@ -110,7 +110,7 @@
   </g>
 
   <!-- 3. Center Character: Adorable Grade 2 Student with Star Badge -->
-  <g id="g2Kid" transform="translate(295, 38)" filter="url(#softShadow)">
+  <g id="g2Kid" transform="translate(295, 38)" filter="url(#g2Shadow)">
     <!-- Body / Uniform (Bright Orange / Yellow) -->
     <path d="M 32,88 Q 55,75 78,88 L 84,155 L 26,155 Z" fill="#FF9F43"/>
     <polygon points="46,82 55,96 64,82" fill="#FFFFFF"/>
