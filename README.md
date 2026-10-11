@@ -81,7 +81,7 @@ Double-click **`index.html`** in Windows File Explorer, or run in PowerShell:
 Start-Process index.html
 ```
 
-### 2. Run the Automated 80-Point Test Suite
+### 2. Run the Automated 86-Point Test Suite
 In PowerShell / terminal:
 ```powershell
 node validate.js
@@ -89,7 +89,7 @@ node validate.js
 Expected output:
 ```text
 ======================================================
-🎯 TEST RESULTS: 80 PASSED, 0 FAILED
+🎯 TEST RESULTS: 86 PASSED, 0 FAILED
 ======================================================
 ```
 
