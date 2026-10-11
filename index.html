@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Smart Learning Cards - CBSE & Telangana SSC</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/memory-color-game.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
@@ -76,6 +77,27 @@
           </div>
           <button class="btn btn-primary btn-large btn-grade5" id="btnSelectGrade5">
             Explore Grade 5 ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- Special Activity: Memory Color Challenge -->
+      <div class="activity-card-section">
+        <div class="activity-challenge-card" id="cardMemoryColor" tabindex="0" role="button" aria-label="Start Memory Color Challenge Activity">
+          <div class="activity-badge">Special Creative Activity ⭐</div>
+          <div class="activity-icon-wrap" aria-hidden="true">
+            <span>🎨 🧠</span>
+          </div>
+          <h3 class="activity-title">Memory Color Challenge</h3>
+          <p class="activity-subtitle">Look carefully, remember the colors, and recreate the picture!</p>
+          <p class="activity-desc">Observe a colorful picture for 15 seconds. Then recreate it from your memory using the color palette!</p>
+          <div class="activity-meta-pills">
+            <span class="activity-pill">⏱️ 15s Observation</span>
+            <span class="activity-pill">🎯 10 Marks per Picture</span>
+            <span class="activity-pill">👶 Grade 2 Friendly</span>
+          </div>
+          <button class="btn-start-activity" id="btnStartMemoryColor">
+            Start Challenge 🎨
           </button>
         </div>
       </div>
@@ -327,6 +349,153 @@
         </div>
       </div>
     </section>
+
+    <!-- Screen 5: Memory Color Challenge View -->
+    <section id="memoryColorView" class="view" aria-label="Memory Color Challenge Activity" style="display: none;">
+      <div class="mc-container">
+        <!-- Navigation Breadcrumbs -->
+        <div class="mc-nav-row">
+          <button id="btnBackToHomeFromMemoryColor" class="btn btn-secondary btn-small" type="button" aria-label="Back to Home Screen">
+            ← Back to Home
+          </button>
+          <span class="mc-badge-pill">Memory Color Challenge • 10 Marks</span>
+        </div>
+
+        <!-- Phase A: Observation Phase (15 Seconds) -->
+        <div id="mcObservePhase" class="mc-phase-wrap">
+          <div class="mc-banner">
+            <h2 id="mcObserveTitle">Look carefully and remember the colors! 👀</h2>
+            <p id="mcObserveSubtitle">You have 15 seconds to observe before the picture disappears!</p>
+          </div>
+
+          <!-- Countdown Progress Bar -->
+          <div class="mc-timer-banner" aria-live="polite">
+            <div class="mc-timer-row">
+              <span class="mc-timer-label">⏱️ Observation Time Left:</span>
+              <span id="mcTimerText" class="mc-timer-badge">15s</span>
+            </div>
+            <div class="mc-timer-track">
+              <div id="mcTimerFill" class="mc-timer-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- Original Colored SVG Canvas -->
+          <div class="mc-canvas-card observing" id="mcObserveSvgContainer">
+            <!-- SVG injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Phase B: Coloring Phase -->
+        <div id="mcColoringPhase" class="mc-phase-wrap" style="display: none;">
+          <div class="mc-banner">
+            <h2 id="mcColoringTitle">Now color the picture from your memory! 🎨</h2>
+            <p>Select a color from the palette below and click any part of the picture to fill it.</p>
+          </div>
+
+          <!-- Uncolored Outline Interactive SVG Canvas -->
+          <div class="mc-canvas-card coloring" id="mcColoringSvgContainer" role="group" aria-label="Interactive coloring canvas">
+            <!-- SVG injected dynamically -->
+          </div>
+
+          <!-- Color Palette & Action Controls -->
+          <div class="mc-tools-card">
+            <div class="mc-palette-header">
+              <span class="mc-palette-title">Choose Color:</span>
+              <div class="mc-selected-color-indicator">
+                <span class="mc-selected-lbl">Selected:</span>
+                <span id="mcSelectedColorPreview" class="mc-selected-swatch"></span>
+                <span id="mcSelectedColorName" class="mc-selected-name">Red</span>
+              </div>
+            </div>
+
+            <!-- Palette Grid of 10 Colors -->
+            <div class="mc-palette-grid" id="mcPaletteContainer" role="toolbar" aria-label="Color palette">
+              <!-- 10 palette buttons injected dynamically -->
+            </div>
+
+            <!-- Actions: Undo, Reset, Submit -->
+            <div class="mc-actions-row">
+              <div class="mc-btn-group-left">
+                <button type="button" id="mcBtnUndo" class="mc-btn mc-btn-secondary" title="Undo last color">
+                  ↩️ Undo
+                </button>
+                <button type="button" id="mcBtnReset" class="mc-btn mc-btn-secondary" title="Reset all colors">
+                  🔄 Reset
+                </button>
+              </div>
+              <button type="button" id="mcBtnSubmit" class="mc-btn mc-btn-submit">
+                Submit Picture ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase C: Results Phase -->
+        <div id="mcResultsPhase" class="mc-phase-wrap" style="display: none;">
+          <div class="mc-results-card">
+            <div class="mc-trophy-emoji">🏆</div>
+            <h2 id="mcResultsHeading" class="mc-results-heading">Awesome Job! 🌟</h2>
+            <p id="mcResultsSubtext" class="mc-results-subtext">You completed the challenge!</p>
+
+            <!-- Score Bubble -->
+            <div class="mc-score-bubble">
+              <span id="mcFinalScoreNum" class="mc-score-num">10</span>
+              <span class="mc-score-denom">/ 10 Marks</span>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="mc-stats-grid">
+              <div class="mc-stat-box">
+                <div class="mc-stat-icon">✅</div>
+                <div id="mcStatCorrectCount" class="mc-stat-val">10</div>
+                <div class="mc-stat-lbl">Correct Colors</div>
+              </div>
+              <div class="mc-stat-box">
+                <div class="mc-stat-icon">❌</div>
+                <div id="mcStatIncorrectCount" class="mc-stat-val">0</div>
+                <div class="mc-stat-lbl">Incorrect / Missed</div>
+              </div>
+              <div class="mc-stat-box">
+                <div class="mc-stat-icon">🖼️</div>
+                <div id="mcStatPictureName" class="mc-stat-val" style="font-size: 1.05rem;">House</div>
+                <div class="mc-stat-lbl">Picture</div>
+              </div>
+            </div>
+
+            <!-- Side-by-Side Comparison -->
+            <div class="mc-compare-container">
+              <h3 class="mc-compare-heading">Visual Comparison 👀</h3>
+              <div class="mc-compare-grid">
+                <div class="mc-compare-column">
+                  <span class="mc-compare-col-title">Your Coloring:</span>
+                  <div class="mc-compare-svg-wrap" id="mcResultsUserSvg"></div>
+                </div>
+                <div class="mc-compare-column">
+                  <span class="mc-compare-col-title">Original Picture:</span>
+                  <div class="mc-compare-svg-wrap" id="mcResultsOriginalSvg"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Region-by-Region Itemized Breakdown -->
+            <div class="mc-breakdown-section">
+              <h3 class="mc-breakdown-title">Region by Region Results</h3>
+              <div id="mcResultsBreakdownList" class="mc-breakdown-list"></div>
+            </div>
+
+            <!-- Results Actions -->
+            <div class="mc-results-buttons">
+              <button type="button" id="mcBtnTryAnother" class="mc-btn mc-btn-primary">
+                Try Another Picture 🎨
+              </button>
+              <button type="button" id="mcBtnPlayAgain" class="mc-btn mc-btn-replay">
+                Play Again 🔄
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="app-footer">
@@ -338,8 +507,10 @@
   <script src="data/ict-questions.js"></script>
   <script src="data/grade5-ssc-maths-questions.js"></script>
   <script src="data/grade5-ssc-science-questions.js"></script>
+  <script src="data/memory-color-pictures.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/memory-color-game.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
