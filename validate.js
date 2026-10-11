@@ -191,6 +191,120 @@ assert(checkSvgWellFormed('./assets/images/home-hero-illustration.svg'), 'assets
 assert(checkSvgWellFormed('./assets/images/grade2-learning-art.svg'), 'assets/images/grade2-learning-art.svg is well-formed XML with zero duplicate attributes');
 assert(checkSvgWellFormed('./assets/images/grade5-learning-art.svg'), 'assets/images/grade5-learning-art.svg is well-formed XML with zero duplicate attributes');
 
+// 16. Memory Color Challenge Unit & Integration Tests
+const { MEMORY_COLOR_PICTURES, MEMORY_COLORS, normalizeHex } = require('./data/memory-color-pictures.js');
+const { MemoryColorGame } = require('./js/memory-color-game.js');
+
+assert(fs.existsSync('./data/memory-color-pictures.js'), 'data/memory-color-pictures.js exists');
+assert(fs.existsSync('./js/memory-color-game.js'), 'js/memory-color-game.js exists');
+assert(fs.existsSync('./css/memory-color-game.css'), 'css/memory-color-game.css exists');
+
+assert(htmlContent.includes('css/memory-color-game.css'), 'index.html links css/memory-color-game.css');
+assert(htmlContent.includes('data/memory-color-pictures.js'), 'index.html includes data/memory-color-pictures.js script');
+assert(htmlContent.includes('js/memory-color-game.js'), 'index.html includes js/memory-color-game.js script');
+assert(htmlContent.includes('id="memoryColorView"'), 'index.html defines memoryColorView section');
+assert(htmlContent.includes('id="cardMemoryColor"'), 'index.html defines cardMemoryColor activity card on home screen');
+
+// 17. Memory Color Picture Bank Verification (At least 10 pictures, exactly 10 regions each)
+assert(Array.isArray(MEMORY_COLOR_PICTURES) && MEMORY_COLOR_PICTURES.length >= 10, `Memory Color picture bank has at least 10 pictures (Found: ${MEMORY_COLOR_PICTURES.length})`);
+assert(Array.isArray(MEMORY_COLORS) && MEMORY_COLORS.length >= 10, `Palette has at least 10 distinct colors (Found: ${MEMORY_COLORS.length})`);
+
+const validPaletteHexes = new Set(MEMORY_COLORS.map(c => normalizeHex(c.hex)));
+assert(validPaletteHexes.size >= 10, 'All palette color hex values are unique');
+
+const allPicsHave10UniqueRegions = MEMORY_COLOR_PICTURES.every(pic => {
+  if (!pic.regions || pic.regions.length !== 10) return false;
+  const regionIds = new Set(pic.regions.map(r => r.id));
+  return regionIds.size === 10;
+});
+assert(allPicsHave10UniqueRegions, 'Every picture has exactly 10 unique, independently colorable region IDs');
+
+const allRegionsHaveValidPaletteColors = MEMORY_COLOR_PICTURES.every(pic =>
+  pic.regions.every(r => validPaletteHexes.has(normalizeHex(r.color)))
+);
+assert(allRegionsHaveValidPaletteColors, 'Every region across all pictures has a valid assigned palette color');
+
+// 18. Memory Color Game Engine & Scoring Tests
+const game = new MemoryColorGame(MEMORY_COLOR_PICTURES, MEMORY_COLORS);
+assert(game.durationMs === 15000, 'Observation phase duration is configured for exactly 15 seconds (15,000ms)');
+
+// Test: Random picture picking avoids immediate consecutive repeats
+const picA = game.pickRandomPicture();
+game.lastPictureId = picA.id;
+const picB = game.pickRandomPicture();
+assert(picB.id !== picA.id, `pickRandomPicture avoids consecutive repeat (${picA.id} -> ${picB.id})`);
+
+// Test scoring scenarios on Picture 1
+const testPic = MEMORY_COLOR_PICTURES[0];
+game.currentPicture = testPic;
+
+// Scenario A: 0/10 (uncolored)
+game.userColors = {};
+assert(game.calculateScore() === 0, 'Uncolored picture scores 0/10 marks');
+
+// Scenario B: 10/10 (all 10 correct)
+testPic.regions.forEach(r => {
+  game.userColors[r.id] = r.color;
+});
+assert(game.calculateScore() === 10, 'All 10 correct regions score 10/10 marks');
+
+// Scenario C: 9/10 (9 correct, 1 wrong)
+game.userColors[testPic.regions[0].id] = '#FFFFFF'; // wrong color
+assert(game.calculateScore() === 9, '9 correct regions score 9/10 marks');
+
+// Scenario D: 7/10 (7 correct, 3 wrong)
+game.userColors[testPic.regions[1].id] = '#000000';
+game.userColors[testPic.regions[2].id] = '#000000';
+assert(game.calculateScore() === 7, '7 correct regions score 7/10 marks');
+
+// Scenario E: 5/10 (5 correct, 5 wrong)
+game.userColors[testPic.regions[3].id] = '#000000';
+game.userColors[testPic.regions[4].id] = '#000000';
+assert(game.calculateScore() === 5, '5 correct regions score 5/10 marks');
+
+// Scenario F: 0/10 (all wrong colors)
+testPic.regions.forEach(r => {
+  game.userColors[r.id] = '#000000'; // none match
+});
+assert(game.calculateScore() === 0, 'Zero correct regions score 0/10 marks');
+
+// Test score ceiling never exceeds 10
+assert(game.calculateScore() <= 10, 'Final score is strictly bounded and never exceeds 10 marks');
+
+// Test Submission Lock (cannot resubmit once submitted)
+game.isSubmitted = false;
+game.phase = 'coloring';
+game.submitColoring();
+assert(game.isSubmitted === true && game.phase === 'results', 'Submitting transitions phase to results and locks canvas');
+
+// Try calling submitColoring again - score must not change
+const scoreAfterSubmit = game.score;
+game.submitColoring();
+assert(game.score === scoreAfterSubmit, 'Submitting multiple times cannot alter or double-count the score');
+
+// Test Undo functionality
+game.isSubmitted = false;
+game.phase = 'coloring';
+game.userColors = {};
+game.history = [];
+game.selectedColor = '#FF4757';
+game.handleRegionClick('p1-roof'); // Roof gets #FF4757
+assert(game.userColors['p1-roof'] === '#FF4757', 'Coloring region updates userColors mapping');
+game.undoLastColor();
+assert(!game.userColors['p1-roof'], 'Undo successfully reverts the last colored region');
+
+// Test Reset functionality
+game.handleRegionClick('p1-roof');
+game.handleRegionClick('p1-wall');
+game.resetColoring();
+assert(Object.keys(game.userColors).length === 0, 'Reset clearing all user colors works correctly');
+
+// Test cleanup stops active timers
+game.startCountdownTimer();
+assert(game.timerId !== null, 'Countdown timer starts successfully');
+game.cleanup();
+assert(game.timerId === null && game.phase === 'idle', 'Cleanup stops active timer and resets phase safely');
+
 console.log('\n======================================================');
 console.log(`🎯 TEST RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('======================================================\n');

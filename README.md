@@ -15,7 +15,13 @@ Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
 2. **Grade 5 Telangana SSC Question Banks**:
    - **Maths**: 100 questions covering Lakhs place value, multi-digit operations, factors & multiples, fractions, decimals, geometry & angles, perimeter & area, and measurement conversions.
    - **Science (EVS)**: 100 questions covering animal senses, Nallamala forests & Chenchus, seed dispersal, digestion & balanced diet, water harvesting & Mission Bhagiratha, historic Telangana forts (Golconda, Ramappa, Warangal), and environmental conservation.
-3. **🔊 Browser-Native Read-Aloud Feature**:
+3. **🎨 Memory Color Challenge — Observe, Remember, and Color!**:
+   - Special educational activity primarily designed for Grade 2 learners.
+   - **15-Second Observation Phase**: A fully colored educational picture is displayed with a live countdown timer.
+   - **Coloring Phase**: The matching outline picture appears, and the child recreates the colors from memory using a 10-color palette.
+   - **Scoring**: Exactly 10 marks per picture (1 mark per correct region). Max score: 10/10.
+   - **Feedback & Comparison**: Side-by-side visual comparison of the child's coloring vs. the original picture, with positive encouraging feedback.
+4. **🔊 Browser-Native Read-Aloud Feature**:
    - **Read Question**: Speaks the question statement naturally with mathematical expressions formatted in plain English (e.g., "times", "divided by", "rupees").
    - **Read Options**: Clearly announces options one by one ("Option A: ... Option B: ...").
    - **Read Feedback**: Audio explanation and answer reveal after submitting an answer.
@@ -28,38 +34,42 @@ Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
 
 ```text
 Flash-Card-Project/
-├── index.html                           # Main application UI (Grades, Subjects, Flashcards)
+├── index.html                           # Main application UI (Grades, Subjects, Flashcards & Activity)
 ├── assets/
 │   └── images/
 │       ├── home-hero-illustration.svg   # Cheerful vector illustration for main grade selection
 │       ├── grade2-learning-art.svg      # Grade 2 CBSE vector learning illustration banner
 │       └── grade5-learning-art.svg      # Grade 5 Telangana SSC vector learning illustration banner
 ├── css/
-│   └── style.css                        # Cheerful, responsive, accessible styles & animations
+│   ├── style.css                        # Cheerful, responsive, accessible styles & animations
+│   └── memory-color-game.css            # Scoped styles for Memory Color Challenge activity
 ├── js/
 │   ├── app.js                           # View routing, navigation & speech button handlers
 │   ├── quiz.js                          # QuizEngine: Grade/subject loading, shuffle & scoring
+│   ├── memory-color-game.js             # Memory Color Challenge: Timer, coloring & scoring engine
 │   └── utils.js                         # Fisher-Yates shuffle, Web Audio & SpeechHelper (TTS)
 ├── data/
 │   ├── maths-questions.js               # Grade 2 CBSE Maths (100 questions)
 │   ├── ict-questions.js                 # Grade 2 CBSE ICT (100 questions)
 │   ├── grade5-ssc-maths-questions.js    # Grade 5 Telangana SSC Maths (100 questions)
-│   └── grade5-ssc-science-questions.js  # Grade 5 Telangana SSC Science (EVS) (100 questions)
-├── validate.js                          # 48-point automated verification test suite
+│   ├── grade5-ssc-science-questions.js  # Grade 5 Telangana SSC Science (EVS) (100 questions)
+│   └── memory-color-pictures.js         # 10 Pictures with 10 colorable regions each
+├── validate.js                          # 80-point automated verification test suite
 └── README.md                            # Documentation and deployment instructions
 ```
 
 ---
 
-## 📊 Question Bank Summary (400 Total Questions)
+## 📊 Question Bank & Picture Summary
 
-| Grade | Board | Subject | Question Bank File | Questions |
+| Category | Level | Subject / Activity | Data File | Units |
 | :--- | :--- | :--- | :--- | :--- |
-| **Grade 2** | CBSE | Maths | `data/maths-questions.js` | **100** |
-| **Grade 2** | CBSE | ICT | `data/ict-questions.js` | **100** |
-| **Grade 5** | Telangana SSC | Maths | `data/grade5-ssc-maths-questions.js` | **100** |
-| **Grade 5** | Telangana SSC | Science (EVS) | `data/grade5-ssc-science-questions.js` | **100** |
-| **Total** | | | | **400** |
+| **Quiz** | Grade 2 CBSE | Maths | `data/maths-questions.js` | **100 Questions** |
+| **Quiz** | Grade 2 CBSE | ICT | `data/ict-questions.js` | **100 Questions** |
+| **Quiz** | Grade 5 Telangana SSC | Maths | `data/grade5-ssc-maths-questions.js` | **100 Questions** |
+| **Quiz** | Grade 5 Telangana SSC | Science (EVS) | `data/grade5-ssc-science-questions.js` | **100 Questions** |
+| **Activity** | Grade 2 Activity | Memory Color Challenge | `data/memory-color-pictures.js` | **10 Pictures (100 Regions)** |
+| **Total** | | | | **400 Questions + 10 Challenge Pictures** |
 
 ---
 
@@ -71,7 +81,7 @@ Double-click **`index.html`** in Windows File Explorer, or run in PowerShell:
 Start-Process index.html
 ```
 
-### 2. Run the Automated 48-Point Test Suite
+### 2. Run the Automated 80-Point Test Suite
 In PowerShell / terminal:
 ```powershell
 node validate.js
@@ -79,7 +89,7 @@ node validate.js
 Expected output:
 ```text
 ======================================================
-🎯 TEST RESULTS: 48 PASSED, 0 FAILED
+🎯 TEST RESULTS: 80 PASSED, 0 FAILED
 ======================================================
 ```
 

@@ -15,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const subjectGrade5View = document.getElementById('subjectGrade5View');
   const quizView = document.getElementById('quizView');
   const resultsView = document.getElementById('resultsView');
+  const memoryColorView = document.getElementById('memoryColorView');
+
+  // Memory Color Challenge Elements
+  const cardMemoryColor = document.getElementById('cardMemoryColor');
+  const btnStartMemoryColor = document.getElementById('btnStartMemoryColor');
+  const btnBackToHomeFromMemoryColor = document.getElementById('btnBackToHomeFromMemoryColor');
+
+  // Memory Color Game Instance
+  const memoryColorGame = new (window.MemoryColorGame || MemoryColorGame)(
+    window.MEMORY_COLOR_PICTURES,
+    window.MEMORY_COLORS
+  );
+  window.memoryColorGame = memoryColorGame;
+  memoryColorGame.initDOM();
 
   // Header Elements
   const headerLogoArea = document.getElementById('headerLogoArea');
@@ -109,19 +123,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // Always cancel ongoing speech on view transitions
     if (speech) speech.stop();
 
+    // Clean up memory color challenge timer if navigating away from it
+    if (viewName !== 'memoryColor' && memoryColorGame) {
+      memoryColorGame.cleanup();
+    }
+
     gradeSelectView.style.display = 'none';
     subjectGrade2View.style.display = 'none';
     subjectGrade5View.style.display = 'none';
     quizView.style.display = 'none';
     resultsView.style.display = 'none';
+    if (memoryColorView) memoryColorView.style.display = 'none';
 
     if (viewName === 'gradeSelect') gradeSelectView.style.display = 'flex';
     if (viewName === 'subjectGrade2') subjectGrade2View.style.display = 'flex';
     if (viewName === 'subjectGrade5') subjectGrade5View.style.display = 'flex';
     if (viewName === 'quiz') quizView.style.display = 'flex';
     if (viewName === 'results') resultsView.style.display = 'flex';
+    if (viewName === 'memoryColor') memoryColorView.style.display = 'flex';
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Memory Color Challenge Launchers
+  function startMemoryColorChallenge() {
+    showView('memoryColor');
+    if (memoryColorGame) {
+      memoryColorGame.startChallenge();
+    }
+  }
+
+  if (btnStartMemoryColor) {
+    btnStartMemoryColor.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startMemoryColorChallenge();
+    });
+  }
+
+  if (cardMemoryColor) {
+    cardMemoryColor.addEventListener('click', () => startMemoryColorChallenge());
+    cardMemoryColor.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        startMemoryColorChallenge();
+      }
+    });
+  }
+
+  if (btnBackToHomeFromMemoryColor) {
+    btnBackToHomeFromMemoryColor.addEventListener('click', () => {
+      if (memoryColorGame) memoryColorGame.cleanup();
+      showView('gradeSelect');
+    });
   }
 
   // Grade Selection Handlers
