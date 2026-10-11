@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Smart Learning Cards - Grade 2 CBSE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="logo-icon" aria-hidden="true">🎒</span>
+        <div>
+          <h1 class="app-title">My Smart Learning Cards</h1>
+          <p class="app-subtitle">Learn, Play and Shine! ✨</p>
+        </div>
+      </div>
+      <div class="header-sound-control">
+        <button id="soundToggleBtn" class="sound-toggle-btn" aria-label="Toggle Sound Effects" title="Toggle Sound">
+          🔊 Sound On
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Screen 1: Home View -->
+    <section id="homeView" class="view active-view" aria-label="Subject Selection">
+      <div class="welcome-banner">
+        <h2>Hello Superstar! 👋</h2>
+        <p>Pick a subject below to start your fun 10-question flashcard quiz!</p>
+      </div>
+
+      <div class="subject-grid">
+        <!-- Maths Card -->
+        <div class="subject-card maths-card" id="cardMaths">
+          <div class="subject-badge">Grade 2 CBSE</div>
+          <div class="subject-icon-wrap" aria-hidden="true">
+            <span class="subject-icon">📐 🔢</span>
+          </div>
+          <h3 class="subject-name">Maths</h3>
+          <p class="subject-desc">Numbers, Place Values, Addition, Shapes, Time & Fun Puzzles!</p>
+          <div class="question-count-badge">
+            <span class="count-number">100</span> Questions in Bank
+          </div>
+          <button class="btn btn-primary btn-large btn-maths" id="btnStartMaths">
+            Start Maths Quiz 🚀
+          </button>
+        </div>
+
+        <!-- ICT Card -->
+        <div class="subject-card ict-card" id="cardIct">
+          <div class="subject-badge">Grade 2 CBSE</div>
+          <div class="subject-icon-wrap" aria-hidden="true">
+            <span class="subject-icon">💻 🖱️</span>
+          </div>
+          <h3 class="subject-name">ICT (Computers)</h3>
+          <p class="subject-desc">Parts of Computer, Keys, Mouse Actions, Drawing & Safe Internet!</p>
+          <div class="question-count-badge">
+            <span class="count-number">100</span> Questions in Bank
+          </div>
+          <button class="btn btn-primary btn-large btn-ict" id="btnStartIct">
+            Start ICT Quiz 🚀
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 2: Quiz View -->
+    <section id="quizView" class="view" aria-label="Flashcard Quiz" style="display: none;">
+      <!-- Quiz Header Status Bar -->
+      <div class="quiz-status-bar">
+        <button id="btnQuitQuiz" class="btn btn-secondary btn-small" aria-label="Exit quiz and return to Home">
+          ← Home
+        </button>
+        <div class="subject-indicator" id="quizSubjectLabel">
+          Maths
+        </div>
+        <div class="live-score-pill">
+          Score: <span id="liveScoreText" class="score-highlight">0</span> / 10 ⭐
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-wrap" aria-label="Quiz Progress">
+        <div class="progress-bar-bg">
+          <div id="progressBarFill" class="progress-bar-fill" style="width: 10%;"></div>
+        </div>
+        <div class="progress-text" id="progressText">Question 1 of 10</div>
+      </div>
+
+      <!-- Flashcard Interface -->
+      <article class="flashcard" id="flashcardBox">
+        <div class="card-top-row">
+          <span class="topic-tag" id="cardTopicTag">Topic</span>
+          <span class="question-id-tag" id="cardQuestionId">MATH001</span>
+        </div>
+
+        <div class="question-statement-box">
+          <h2 id="cardQuestionText" class="question-statement">Question statement goes here?</h2>
+        </div>
+
+        <!-- 4 Options Grid -->
+        <div class="options-grid" id="optionsGrid" role="group" aria-label="Answer options">
+          <!-- Options injected dynamically -->
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div id="feedbackBox" class="feedback-box" style="display: none;" role="alert" aria-live="polite">
+          <div class="feedback-title" id="feedbackTitle">Correct! Great job! 🎉</div>
+          <p class="feedback-detail" id="feedbackDetail"></p>
+          <div class="explanation-box" id="feedbackExplanation"></div>
+        </div>
+
+        <!-- Action Button Row -->
+        <div class="card-footer-actions">
+          <button id="btnNextQuestion" class="btn btn-next" style="display: none;">
+            Next Question ➔
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Screen 3: Results View -->
+    <section id="resultsView" class="view" aria-label="Quiz Results" style="display: none;">
+      <div class="results-card">
+        <div class="results-header">
+          <div class="trophy-emoji" id="trophyIcon">🏆</div>
+          <h2 id="resultsHeading" class="results-heading">Superstar!</h2>
+          <p id="resultsSubtext" class="results-subtext">You completed the quiz!</p>
+        </div>
+
+        <!-- Score Ring / Box -->
+        <div class="final-score-container">
+          <div class="final-score-bubble">
+            <span id="finalScoreNumerator" class="score-num">10</span>
+            <span class="score-denom">/ 10</span>
+          </div>
+          <div class="percentage-badge" id="finalPercentage">100%</div>
+        </div>
+
+        <!-- Stats Breakdown Row -->
+        <div class="stats-row">
+          <div class="stat-box stat-correct">
+            <div class="stat-icon">✅</div>
+            <div class="stat-val" id="statCorrectCount">10</div>
+            <div class="stat-lbl">Correct</div>
+          </div>
+          <div class="stat-box stat-incorrect">
+            <div class="stat-icon">❌</div>
+            <div class="stat-val" id="statIncorrectCount">0</div>
+            <div class="stat-lbl">Incorrect</div>
+          </div>
+          <div class="stat-box stat-subject">
+            <div class="stat-icon">📚</div>
+            <div class="stat-val" id="statSubjectName">Maths</div>
+            <div class="stat-lbl">Subject</div>
+          </div>
+        </div>
+
+        <!-- Result Action Buttons -->
+        <div class="results-buttons">
+          <button id="btnPlayAgain" class="btn btn-primary btn-large btn-replay">
+            Play Again 🔄
+          </button>
+          <button id="btnChangeSubject" class="btn btn-secondary btn-large">
+            Choose Another Subject 🏠
+          </button>
+          <button id="btnToggleReview" class="btn btn-outline btn-large">
+            Review Questions 📝
+          </button>
+        </div>
+
+        <!-- Review Accordion/Section -->
+        <div id="reviewContainer" class="review-container" style="display: none;">
+          <h3 class="review-title">Quiz Review: Your Answers</h3>
+          <div id="reviewList" class="review-list">
+            <!-- Review cards injected here -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Made with ❤️ for Grade 2 CBSE Learners • "Learn, Play and Shine!"</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/maths-questions.js"></script>
+  <script src="data/ict-questions.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
