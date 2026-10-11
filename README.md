@@ -17,7 +17,7 @@ Live GitHub Pages URL: **https://naresh-shekkari.github.io/Flash-Card-Project/**
    - **Science (EVS)**: 100 questions covering animal senses, Nallamala forests & Chenchus, seed dispersal, digestion & balanced diet, water harvesting & Mission Bhagiratha, historic Telangana forts (Golconda, Ramappa, Warangal), and environmental conservation.
 3. **🎨 Memory Color Challenge — Observe, Remember, and Color!**:
    - Special educational activity primarily designed for Grade 2 learners.
-   - **15-Second Observation Phase**: A fully colored educational picture is displayed with a live countdown timer.
+   - **60-Second Observation Phase**: A fully colored educational picture is displayed with a live countdown timer.
    - **Coloring Phase**: The matching outline picture appears, and the child recreates the colors from memory using a 10-color palette.
    - **Scoring**: Exactly 10 marks per picture (1 mark per correct region). Max score: 10/10.
    - **Feedback & Comparison**: Side-by-side visual comparison of the child's coloring vs. the original picture, with positive encouraging feedback.

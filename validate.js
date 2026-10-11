@@ -226,7 +226,7 @@ assert(allRegionsHaveValidPaletteColors, 'Every region across all pictures has a
 
 // 18. Memory Color Game Engine & Scoring Tests
 const game = new MemoryColorGame(MEMORY_COLOR_PICTURES, MEMORY_COLORS);
-assert(game.durationMs === 15000, 'Observation phase duration is configured for exactly 15 seconds (15,000ms)');
+assert(game.durationMs === 60000, 'Observation phase duration is configured for exactly 60 seconds (60,000ms)');
 
 // Test: Random picture picking avoids immediate consecutive repeats
 const picA = game.pickRandomPicture();

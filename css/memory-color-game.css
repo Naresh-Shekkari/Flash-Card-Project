@@ -61,7 +61,7 @@
 }
 
 /* -----------------------------------------------------------------------------
-   Phase A: 15-Second Observation & Countdown Bar
+   Phase A: 60-Second Observation & Countdown Bar
    ----------------------------------------------------------------------------- */
 .mc-timer-banner {
   background: linear-gradient(135deg, #fff9e6 0%, #fff0d4 100%);

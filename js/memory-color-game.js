@@ -17,7 +17,7 @@ class MemoryColorGame {
     this.selectedColor = this.colors.length > 0 ? this.colors[0].hex : '#FF4757';
     this.timerId = null;
     this.timerStartTime = 0;
-    this.durationMs = 15000; // 15 seconds observation
+    this.durationMs = 60000; // 60 seconds observation
     this.isSubmitted = false;
     this.score = 0;
     this.resultsBreakdown = [];
@@ -107,7 +107,7 @@ class MemoryColorGame {
     return pool[randomIndex];
   }
 
-  // Start Challenge (Phase A: 15-second observation)
+  // Start Challenge (Phase A: 60-second observation)
   startChallenge(preferredPictureId = null) {
     this.cleanup();
 
@@ -158,7 +158,7 @@ class MemoryColorGame {
     }
 
     // Reset countdown display
-    this.updateTimerDisplay(15, 100);
+    this.updateTimerDisplay(Math.ceil(this.durationMs / 1000), 100);
   }
 
   // Reliable timestamp-based countdown timer
